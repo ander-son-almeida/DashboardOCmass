@@ -60,7 +60,7 @@ minimum Euclidean distance from the observed one in magnitude space, according t
 ''')
 
 st.latex(r'''
-         $d_i  = \min_{s\in S} ~ \sqrt {\sum _{j=1}^{m}  \left( O_{ij}-s_j\right)^2 }$'''
+         d_i  = \min_{s\in S} ~ \sqrt {\sum _{j=1}^{m}  \left( O_{ij}-s_j\right)^2 }'''
          )
 
 
