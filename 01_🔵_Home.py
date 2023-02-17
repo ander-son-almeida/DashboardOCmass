@@ -48,6 +48,6 @@ st.subheader('The page is still being updated!')
 st.write('''
 
 For any questions, information or collaborations, please contact us by email:
-    andersonalmeida_sa@outlook.com
+    andersonalmeida_sa@outlook.com or hmonteiro@unifei.edu.br
     
     ''')
