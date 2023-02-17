@@ -173,7 +173,7 @@ plot_ind1 = px.scatter(fm_int, x="mass_bin_ctr", y="mass_cnt", error_y="mass_cnt
 plot_ind2 = px.line(fm_int_adj, x = 'xplot', y = 'ajuste', color_discrete_sequence = ['orange'])
 plot_int = go.Figure(data = plot_ind1.data + plot_ind2.data)
 
-plot_int.update_layout(title='\alpha_{A} = {} ± {};  αB = {} ± {};  Mc = {} ± {}'.format(np.around(alpha_high_mass,decimals=2),
+plot_int.update_layout(title='αA = {} ± {};  αB = {} ± {};  Mc = {} ± {}'.format(np.around(alpha_high_mass,decimals=2),
                                                                                np.around(alpha_high_mass_error,decimals=2),
                                                                                np.around(alpha_low_mass,decimals=2),
                                                                                np.around(alpha_low_mass_error,decimals=2),
