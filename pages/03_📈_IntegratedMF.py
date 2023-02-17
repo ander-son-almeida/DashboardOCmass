@@ -120,7 +120,7 @@ ind = np.argsort(members_ship['mass'])
 ra_dec = pd.DataFrame({'RA': members_ship['RA_ICRS'][ind], 
                        'DEC': members_ship['DE_ICRS'][ind], 'Mass': members_ship['mass'][ind]})
 
-fig_ra_dec = px.scatter(ra_dec, x = 'RA', y = 'DEC', color= 'Mass', 
+fig_ra_dec = px.scatter(ra_dec, x = 'RA', y = 'DEC', color= 'M☉', 
                         color_continuous_scale = 'jet_r')
 
 ###############################################################################	
