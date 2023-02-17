@@ -209,15 +209,11 @@ with container2:
     
     st.header("Mass function")
     
-    # col4, col5, col6 = st.columns(3)
-    
     # with col4:
-    st.metric("$Teste_{a}$", value=np.around(alpha_high_mass,decimals=2))
-    # with col5:
-    sr.metric("Wind", value=2.0)
-    # with col6:
-    st.metric("Humidity", value=3.0)
-    
+    st.metric("$Teste_{a}$", value=np.around(alpha_high_mass,decimals=2),
+              "Wind", value=2.0,
+              "Humidity", value=3.0)
+
     
     st.write("All populations")
     st.plotly_chart(plot_int, use_container_width=False)
