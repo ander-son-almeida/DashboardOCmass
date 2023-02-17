@@ -129,7 +129,7 @@ Mc = 1.0
 c1 = SkyCoord(ra=RA*u.degree, dec=DEC*u.degree, distance=dist*u.kpc) # open cluster center
 c2 = SkyCoord(ra=members_ship['RA_ICRS']*u.degree, dec=members_ship['DE_ICRS']*u.degree, distance=dist*u.kpc) 
 mass_members_ship = members_ship['mass'] + members_ship['comp_mass']
-star_dist = np.array(c1.separation_3d(c2))*1000
+star_dist = np.array(c1.separation_3d(c2)*1000)
 
 
 seg1 = pd.DataFrame({'Mc < 1M☉': star_dist[mass_members_ship < Mc]})
