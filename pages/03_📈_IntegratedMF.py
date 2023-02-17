@@ -210,9 +210,7 @@ with container2:
     st.header("Mass function")
     
     # with col4:
-    st.metric("$Teste_{a}$", value=np.around(alpha_high_mass,decimals=2),
-              "Wind", value=2.0,
-              "Humidity", value=3.0)
+    st.metric("$Teste_{a}$", value=np.around(alpha_high_mass,decimals=2))
 
     
     st.write("All populations")
