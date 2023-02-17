@@ -59,7 +59,9 @@ minimum Euclidean distance from the observed one in magnitude space, according t
 
 ''')
 
-st.text("$d_i  = \min_{s\in S} ~ \sqrt {\sum _{j=1}^{m}  \left( O_{ij}-s_j\right)^2 }$")
+st.latex(r'''
+         $d_i  = \min_{s\in S} ~ \sqrt {\sum _{j=1}^{m}  \left( O_{ij}-s_j\right)^2 }$'''
+         )
 
 
 
