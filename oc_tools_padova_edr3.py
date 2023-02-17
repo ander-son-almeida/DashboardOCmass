@@ -13,7 +13,7 @@ Provides usefull function to deal with GAIA data
 import numpy as np
 from scipy.interpolate import interp1d,LinearNDInterpolator,griddata
 from scipy.integrate import trapz,cumtrapz
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 from astropy import units as u
 import sys
 from scipy import stats
