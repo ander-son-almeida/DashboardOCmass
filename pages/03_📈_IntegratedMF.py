@@ -22,26 +22,26 @@ mod_grid, age_grid, z_grid = load_mod_grid()
 filters = ['Gmag','G_BPmag','G_RPmag']
 refMag = 'Gmag' 
 
-# # fundamental parameters
-# cluster = pd.read_csv('data/log-results-eDR3-MF_integrada.csv', sep=';')
-# cluster = cluster.to_records()
-           
-# # Filter detailed MF
-# filtro1 = pd.read_csv('filters/amostra_MF_integrada.csv', sep=';')
-# filtro = filtro1.to_records()  
-# ab, a_ind, b_ind = np.intersect1d(cluster['Cluster'],filtro['clusters_bons'],  return_indices=True)
-# cluster = cluster[a_ind]
-
-
 # fundamental parameters
-cluster = pd.read_csv(r'S:\Área de Trabalho\DashboardOCmass\data\log-results-eDR3-MF_integrada.csv', sep=';')
+cluster = pd.read_csv('data/log-results-eDR3-MF_integrada.csv', sep=';')
 cluster = cluster.to_records()
            
 # Filter detailed MF
-filtro1 = pd.read_csv(r'S:\Área de Trabalho\DashboardOCmass\filters\amostra_MF_integrada.csv', sep=';')
+filtro1 = pd.read_csv('filters/amostra_MF_integrada.csv', sep=';')
 filtro = filtro1.to_records()  
 ab, a_ind, b_ind = np.intersect1d(cluster['Cluster'],filtro['clusters_bons'],  return_indices=True)
 cluster = cluster[a_ind]
+
+
+# # fundamental parameters
+# cluster = pd.read_csv(r'S:\Área de Trabalho\DashboardOCmass\data\log-results-eDR3-MF_integrada.csv', sep=';')
+# cluster = cluster.to_records()
+           
+# # Filter detailed MF
+# filtro1 = pd.read_csv(r'S:\Área de Trabalho\DashboardOCmass\filters\amostra_MF_integrada.csv', sep=';')
+# filtro = filtro1.to_records()  
+# ab, a_ind, b_ind = np.intersect1d(cluster['Cluster'],filtro['clusters_bons'],  return_indices=True)
+# cluster = cluster[a_ind]
 
 
 # Interface: Select clusters name
@@ -52,9 +52,9 @@ cluster_name = st.sidebar.selectbox(
   
   
 # read memberships
-# members_ship = np.load('data/membership_data_edr3/{}_data_stars.npy'.format(cluster_name))
+members_ship = np.load('data/membership_data_edr3/{}_data_stars.npy'.format(cluster_name))
 
-members_ship = np.load(r'S:\Área de Trabalho\DashboardOCmass\data\membership_data_edr3\{}_data_stars.npy'.format(cluster_name))
+# members_ship = np.load(r'S:\Área de Trabalho\DashboardOCmass\data\membership_data_edr3\{}_data_stars.npy'.format(cluster_name))
 
 # select fundamental parameters cluster	
 ind = np.where(cluster['Cluster'] == cluster_name)
