@@ -14,7 +14,6 @@ from scipy.optimize import curve_fit
 import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
-from oc_tools_padova_edr3 import *
 
 st.set_page_config(page_title="DetailedMF",layout='wide', page_icon='📈')
 
