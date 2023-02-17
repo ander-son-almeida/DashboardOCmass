@@ -209,14 +209,14 @@ with container2:
     
     st.header("Mass function")
     
-    col4, col5, col6 = st.columns(3)
+    # col4, col5, col6 = st.columns(3)
     
-    with col4:
-        col1.metric("$Teste_{a}$", value=np.around(alpha_high_mass,decimals=2))
-    with col5:
-        col2.metric("Wind", value=2.0)
-    with col6:
-        col3.metric("Humidity", value=3.0)
+    # with col4:
+    st.metric("$Teste_{a}$", value=np.around(alpha_high_mass,decimals=2))
+    # with col5:
+    sr.metric("Wind", value=2.0)
+    # with col6:
+    st.metric("Humidity", value=3.0)
     
     
     st.write("All populations")
