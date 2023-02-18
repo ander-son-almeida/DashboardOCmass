@@ -207,11 +207,22 @@ col4  = st.columns(1)
 
 with container2:
     
+    st.write(
+    """
+    <style>
+    [data-testid="stMetricDelta"] svg {
+        display: none;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+    
     st.header("Mass function")
     
     # with col4:
     st.metric("$Teste_{a}$", value=np.around(alpha_high_mass,decimals=2), 
-              delta=np.around(alpha_high_mass_error,decimals=2), delta_color ='off')
+              delta="$\pm~{}$".format(np.around(alpha_high_mass_error,decimals=2)), delta_color ='off')
 
     
     st.write("All populations")
