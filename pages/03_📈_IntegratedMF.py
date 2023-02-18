@@ -221,7 +221,7 @@ with container2:
     
     # with col4:
     st.metric("$\\alpha_{A}$", value=np.around(alpha_high_mass,decimals=2), 
-              delta="± {}".format(np.around(alpha_high_mass_error,decimals=2)), delta_color ='off')
+              delta="± {}".format(np.around(alpha_high_mass_error,decimals=2)), delta_color ='normal')
 
     
     st.write("All populations")
