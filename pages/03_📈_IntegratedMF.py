@@ -222,7 +222,7 @@ with container2:
     
     # with col4:
     st.metric("$Teste_{a}$", value=np.around(alpha_high_mass,decimals=2), 
-              delta="$\pm~{}$".format(np.around(alpha_high_mass_error,decimals=2)), delta_color ='off')
+              delta="±{}".format(np.around(alpha_high_mass_error,decimals=2)), delta_color ='off')
 
     
     st.write("All populations")
