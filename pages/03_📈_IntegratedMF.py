@@ -207,17 +207,6 @@ col4  = st.columns(1)
 
 with container2:
     
-    st.write(
-    """
-    <style>
-    [data-testid="stMetricDelta"] svg {
-        display: none;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
-    
     st.header("Mass function")
     
     # with col4:
