@@ -219,10 +219,10 @@ with container2:
 )
     st.header("Mass function")
     
-    # with col4:
-    st.metric("$\\alpha_{A}$", value=np.around(alpha_high_mass,decimals=2), 
-              delta="± {}".format(np.around(alpha_high_mass_error,decimals=2)), 
-              delta_color ='off')
+    # # with col4:
+    # st.metric("$\\alpha_{A}$", value=np.around(alpha_high_mass,decimals=2), 
+    #           delta="± {}".format(np.around(alpha_high_mass_error,decimals=2)), 
+    #           delta_color ='off')
 
     
     st.write("All populations")
