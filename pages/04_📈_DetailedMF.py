@@ -163,8 +163,8 @@ seg.update_layout(xaxis_title= 'Distance (pc)',
 ind_indv = members_ship['comp_mass'] == 0
 mass =  members_ship['mass'][ind_indv]
 
-(alpha_high_mass, alpha_low_mass, Mc, offset, alpha_high_mass_error, \
-    alpha_low_mass_error, Mc_error, offset_error, mass_cnt, mass_cnt_er, 
+(alpha_high_mass_sing, alpha_low_mass_sing, Mc_sing, offset_sing, alpha_high_mass_error_sing, \
+    alpha_low_mass_error_sing, Mc_error_sing, offset_error_sing, mass_cnt, mass_cnt_er, 
     mass_bin_ctr, inv_mass, inv_mass_wd, popt) = fit_MF(mass, 'Sigle')
 
 xplot = np.linspace(mass_bin_ctr.min(),mass_bin_ctr.max(),1000)
@@ -176,14 +176,7 @@ plot_ind1 = px.scatter(fm_ind, x="mass_bin_ctr", y="mass_cnt", error_y="mass_cnt
 plot_ind2 = px.line(fm_ind_adj, x = 'xplot', y = 'ajuste', color_discrete_sequence = ['orange'])
 plot_ind = go.Figure(data = plot_ind1.data + plot_ind2.data)
 
-plot_ind.update_layout(title='αA = {} ± {};  αB = {} ± {};  Mc = {} ± {}'.format(np.around(alpha_high_mass,decimals=2),
-                                                                               np.around(alpha_high_mass_error,decimals=2),
-                                                                               np.around(alpha_low_mass,decimals=2),
-                                                                               np.around(alpha_low_mass_error,decimals=2),
-                                                                               np.around(Mc,decimals=2),
-                                                                               np.around(Mc_error,decimals=2)), 
-                                                                               xaxis_title = 'log(M☉)',
-                                                                               yaxis_title='ξ(log(M☉)')
+plot_ind.update_layout(xaxis_title = 'log(M☉)', yaxis_title='ξ(log(M☉)')
 
 ###############################################################################	
 # FM Primary
@@ -302,12 +295,12 @@ with container2:
         st.subheader("Single")
         st.info('$\\alpha_{{A}}={}~\pm~{};~'
                 '\\alpha_{{B}}={}~\pm~{};~'
-                'M_{{C}}={}~\pm~{}$'.format(np.around(alpha_high_mass,decimals=2), 
-                                               np.around(alpha_high_mass_error,decimals=2),
-                                               np.around(alpha_low_mass,decimals=2),
-                                               np.around(alpha_low_mass_error,decimals=2),
-                                               np.around(Mc,decimals=2),
-                                               np.around(Mc_error,decimals=2)
+                'M_{{C}}={}~\pm~{}$'.format(np.around(alpha_high_mass_sing,decimals=2), 
+                                               np.around(alpha_high_mass_error_sing,decimals=2),
+                                               np.around(alpha_low_mass_sing,decimals=2),
+                                               np.around(alpha_low_mass_error_sing,decimals=2),
+                                               np.around(Mc_sing,decimals=2),
+                                               np.around(Mc_error_sing,decimals=2)
                                                ))
         st.plotly_chart(plot_ind, use_container_width=True)
     
