@@ -203,11 +203,7 @@ col4  = st.columns(1)
 
 with container2:
     
-
-    # with col4:
     st.header("Mass function")
-    a = np.around(alpha_high_mass,decimals=2)
-    b = np.around(alpha_high_mass_error,decimals=2)
     st.info('$\\alpha_{{A}}={}~\pm~{};~'
             '\\alpha_{{B}}={}~\pm~{};~'
             'M_{{C}}={}~\pm~{}$'.format(np.around(alpha_high_mass,decimals=2), 

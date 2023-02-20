@@ -73,6 +73,8 @@ seg_ratio = cluster['segr_ratio'][ind]
 mass_total = cluster['mass_total'][ind]
 mass_total_error = cluster['e_mass_total'][ind]
 bin_frac = cluster['bin_frac'][ind]
+KSTest = cluster['mass_seg'][ind]
+KSTest_pval = cluster['mass_seg'][ind]
 
 # bar with fundamental parameters
 st.sidebar.subheader("Fundamental parameters:")
@@ -83,6 +85,7 @@ st.sidebar.subheader("$FeH = {} \pm {}$".format(FeH[0],e_FeH[0]))
 st.sidebar.subheader("$M_{{total}} = {} \pm {}~M_{{\odot}}$".format(mass_total[0],mass_total_error[0]))
 st.sidebar.subheader("$Bin. Fraction = {}$".format(np.around(bin_frac[0],decimals=2)))
 st.sidebar.subheader("$Seg. Ratio = {}$".format(np.around(seg_ratio[0], decimals=2)))
+st.sidebar.subheader("$KS Test = {} \pm {}$".format(np.around(KSTest[0], decimals=3), np.around(KSTest_pval[0], decimals=3)))
 
 
 #Graphics
@@ -296,6 +299,15 @@ with container2:
     st.header("Mass functions")
     
     with col4:
+        st.info('$\\alpha_{{A}}={}~\pm~{};~'
+                '\\alpha_{{B}}={}~\pm~{};~'
+                'M_{{C}}={}~\pm~{}$'.format(np.around(alpha_high_mass,decimals=2), 
+                                               np.around(alpha_high_mass_error,decimals=2),
+                                               np.around(alpha_low_mass,decimals=2),
+                                               np.around(alpha_low_mass_error,decimals=2),
+                                               np.around(Mc,decimals=2),
+                                               np.around(Mc_error,decimals=2)
+                                               ))
         st.write("Single")
         st.plotly_chart(plot_ind, use_container_width=True)
     
