@@ -212,7 +212,7 @@ with container2:
     st.header("Mass function")
     a = np.around(alpha_high_mass,decimals=2)
     b = np.around(alpha_high_mass_error,decimals=2)
-    st.info('$\\alpha_{{A}}={}~\pm~{}$'.format(a,b), icon="💫")
+    st.info('$\\alpha_{{A}}={}~\pm~{}$'.format(a,b))
 
     st.write("All populations")
     st.plotly_chart(plot_int, use_container_width=False)
