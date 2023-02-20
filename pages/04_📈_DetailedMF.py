@@ -184,8 +184,8 @@ plot_ind.update_layout(xaxis_title = 'log(M☉)', yaxis_title='ξ(log(M☉)')
 ind_bin = members_ship['comp_mass'] > 0
 mass =  members_ship['mass'][ind_bin]
 
-(alpha_high_mass, alpha_low_mass, Mc, offset, alpha_high_mass_error, \
-    alpha_low_mass_error, Mc_error, offset_error, mass_cnt, mass_cnt_er, 
+(alpha_high_mass_prim, alpha_low_mass_prim, Mc_prim, offset_prim, alpha_high_mass_error_prim, \
+    alpha_low_mass_error_prim, Mc_error_prim, offset_error_prim, mass_cnt, mass_cnt_er, 
     mass_bin_ctr, inv_mass, inv_mass_wd, popt) = fit_MF(mass, 'Primary')
 
 xplot = np.linspace(mass_bin_ctr.min(),mass_bin_ctr.max(),1000)
@@ -197,14 +197,7 @@ plot_prim1 = px.scatter(fm_prim, x="mass_bin_ctr", y="mass_cnt", error_y="mass_c
 plot_prim2 = px.line(fm_prim_adj, x = 'xplot', y = 'ajuste', color_discrete_sequence = ['orange'])
 plot_prim = go.Figure(data = plot_prim1.data + plot_prim2.data)
 
-plot_prim.update_layout(title='αA = {} ± {};  αB = {} ± {};  Mc = {} ± {}'.format(np.around(alpha_high_mass,decimals=2),
-                                                                               np.around(alpha_high_mass_error,decimals=2),
-                                                                               np.around(alpha_low_mass,decimals=2),
-                                                                               np.around(alpha_low_mass_error,decimals=2),
-                                                                               np.around(Mc,decimals=2),
-                                                                               np.around(Mc_error,decimals=2)), 
-                                                                               xaxis_title = 'log(M☉)',
-                                                                               yaxis_title='ξ(log(M☉)')
+plot_prim.update_layout(xaxis_title = 'log(M☉)', yaxis_title='ξ(log(M☉)')
 
 ###############################################################################	
 # FM Secundary
@@ -214,8 +207,8 @@ mass =  members_ship['comp_mass'][ind_bin]
 
 title = 'Secundárias \n 'r'$\alpha_A = {} \pm {}$; $\alpha_B = {} \pm {}$; $M_c = {} \pm {}$'
 
-(alpha_high_mass, alpha_low_mass, Mc, offset, alpha_high_mass_error, \
-    alpha_low_mass_error, Mc_error, offset_error, mass_cnt, mass_cnt_er, 
+(alpha_high_mass_sec, alpha_low_mass_sec, Mc_sec, offset_sec, alpha_high_mass_error_sec, \
+    alpha_low_mass_error_sec, Mc_error_sec, offset_error_sec, mass_cnt, mass_cnt_er, 
     mass_bin_ctr, inv_mass, inv_mass_wd, popt) = fit_MF(mass, 'Secundary')
 
 xplot = np.linspace(mass_bin_ctr.min(),mass_bin_ctr.max(),1000)
@@ -227,14 +220,7 @@ plot_sec1 = px.scatter(fm_sec, x="mass_bin_ctr", y="mass_cnt", error_y="mass_cnt
 plot_sec2 = px.line(fm_sec_adj, x = 'xplot', y = 'ajuste', color_discrete_sequence = ['orange'])
 plot_sec = go.Figure(data = plot_sec1.data + plot_sec2.data)
 
-plot_sec.update_layout(title='αA = {} ± {};  αB = {} ± {};  Mc = {} ± {}'.format(np.around(alpha_high_mass,decimals=2),
-                                                                               np.around(alpha_high_mass_error,decimals=2),
-                                                                               np.around(alpha_low_mass,decimals=2),
-                                                                               np.around(alpha_low_mass_error,decimals=2),
-                                                                               np.around(Mc,decimals=2),
-                                                                               np.around(Mc_error,decimals=2)), 
-                                                                               xaxis_title = 'log(M☉)',
-                                                                               yaxis_title='ξ(log(M☉)')
+plot_sec.update_layout(xaxis_title = 'log(M☉)', yaxis_title='ξ(log(M☉)')
 
 ###############################################################################	
 # FM Binary
@@ -242,8 +228,8 @@ plot_sec.update_layout(title='αA = {} ± {};  αB = {} ± {};  Mc = {} ± {}'.f
 ind_bin = members_ship['comp_mass'] > 0
 mass =  np.concatenate((members_ship['mass'][ind_bin], members_ship['comp_mass'][ind_bin]), axis = 0)
 
-(alpha_high_mass, alpha_low_mass, Mc, offset, alpha_high_mass_error, \
-    alpha_low_mass_error, Mc_error, offset_error, mass_cnt, mass_cnt_er, 
+(alpha_high_mass_bin, alpha_low_mass_bin, Mc_bin, offset_bin, alpha_high_mass_error_bin, \
+    alpha_low_mass_error_bin, Mc_error_bin, offset_error_bin, mass_cnt, mass_cnt_er, 
     mass_bin_ctr, inv_mass, inv_mass_wd, popt) = fit_MF(mass, 'Binary')
 
 xplot = np.linspace(mass_bin_ctr.min(),mass_bin_ctr.max(),1000)
@@ -255,22 +241,13 @@ plot_bin1 = px.scatter(fm_bin, x="mass_bin_ctr", y="mass_cnt", error_y="mass_cnt
 plot_bin2 = px.line(fm_bin_adj, x = 'xplot', y = 'ajuste', color_discrete_sequence = ['orange'])
 plot_bin = go.Figure(data = plot_bin1.data + plot_bin2.data)
 
-plot_bin.update_layout(title='αA = {} ± {};  αB = {} ± {};  Mc = {} ± {}'.format(np.around(alpha_high_mass,decimals=2),
-                                                                               np.around(alpha_high_mass_error,decimals=2),
-                                                                               np.around(alpha_low_mass,decimals=2),
-                                                                               np.around(alpha_low_mass_error,decimals=2),
-                                                                               np.around(Mc,decimals=2),
-                                                                               np.around(Mc_error,decimals=2)), 
-                                                                               xaxis_title = 'log(M☉)',
-                                                                               yaxis_title='ξ(log(M☉)')
+plot_bin.update_layout(xaxis_title = 'log(M☉)', yaxis_title='ξ(log(M☉)')
 
 container1 = st.container()
 col1, col2, col3 = st.columns(3)
 
 
 with container1:
-    
-    
     with col1:
         st.subheader("CMD")
         st.plotly_chart(fig, use_container_width=True)
@@ -290,7 +267,6 @@ col4, col5 = st.columns(2)
 with container2:
     
     st.header("Mass functions")
-    
     with col4:
         st.subheader("Single")
         st.info('$\\alpha_{{A}}={}~\pm~{};~'
@@ -305,23 +281,46 @@ with container2:
         st.plotly_chart(plot_ind, use_container_width=True)
     
     with col5:
-        st.write("Primary")
+        st.subheader("Primary")
+        st.info('$\\alpha_{{A}}={}~\pm~{};~'
+                '\\alpha_{{B}}={}~\pm~{};~'
+                'M_{{C}}={}~\pm~{}$'.format(np.around(alpha_high_mass_prim,decimals=2), 
+                                               np.around(alpha_high_mass_error_prim,decimals=2),
+                                               np.around(alpha_low_mass_prim,decimals=2),
+                                               np.around(alpha_low_mass_error_prim,decimals=2),
+                                               np.around(Mc_prim,decimals=2),
+                                               np.around(Mc_error_prim,decimals=2)
+                                               ))
         st.plotly_chart(plot_prim, use_container_width=True)
-    
-
 
 container3 = st.container()
 col6, col7 = st.columns(2)
 
 with container3:
-    
-    
     with col6:
-        st.write("Secundary")
+        st.subheader("Secundary")
+        st.info('$\\alpha_{{A}}={}~\pm~{};~'
+                '\\alpha_{{B}}={}~\pm~{};~'
+                'M_{{C}}={}~\pm~{}$'.format(np.around(alpha_high_mass_sec,decimals=2), 
+                                               np.around(alpha_high_mass_error_sec,decimals=2),
+                                               np.around(alpha_low_mass_sec,decimals=2),
+                                               np.around(alpha_low_mass_error_sec,decimals=2),
+                                               np.around(Mc_sec,decimals=2),
+                                               np.around(Mc_error_sec,decimals=2)
+                                               ))
         st.plotly_chart(plot_sec, use_container_width=True)
 
     with col7:
-        st.write("Binary")
+        st.subheader("Binary")
+        st.info('$\\alpha_{{A}}={}~\pm~{};~'
+                '\\alpha_{{B}}={}~\pm~{};~'
+                'M_{{C}}={}~\pm~{}$'.format(np.around(alpha_high_mass_bin,decimals=2), 
+                                               np.around(alpha_high_mass_error_bin,decimals=2),
+                                               np.around(alpha_low_mass_bin,decimals=2),
+                                               np.around(alpha_low_mass_error_bin,decimals=2),
+                                               np.around(Mc_bin,decimals=2),
+                                               np.around(Mc_error_bin,decimals=2)
+                                               ))
         st.plotly_chart(plot_bin, use_container_width=True)
 
 
