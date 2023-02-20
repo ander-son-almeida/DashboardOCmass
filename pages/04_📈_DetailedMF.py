@@ -299,6 +299,7 @@ with container2:
     st.header("Mass functions")
     
     with col4:
+        st.subheader("Single")
         st.info('$\\alpha_{{A}}={}~\pm~{};~'
                 '\\alpha_{{B}}={}~\pm~{};~'
                 'M_{{C}}={}~\pm~{}$'.format(np.around(alpha_high_mass,decimals=2), 
@@ -308,7 +309,6 @@ with container2:
                                                np.around(Mc,decimals=2),
                                                np.around(Mc_error,decimals=2)
                                                ))
-        st.write("Single")
         st.plotly_chart(plot_ind, use_container_width=True)
     
     with col5:
