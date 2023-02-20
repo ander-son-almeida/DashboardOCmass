@@ -205,9 +205,9 @@ with container2:
     st.header("Mass function")
     a = np.around(alpha_high_mass,decimals=2)
     b = np.around(alpha_high_mass_error,decimals=2)
-    st.info('$\\alpha_{{A}}={}~\pm~{}'
-            '\\alpha_{{B}}={}~\pm~{}'
-            '\\M_{{C}}={}~\pm~{}$'.format(np.around(alpha_high_mass,decimals=2), 
+    st.info('$\\alpha_{{A}}={}~\pm~{};~'
+            '\\alpha_{{B}}={}~\pm~{};~'
+            'M_{{C}}={}~\pm~{}$'.format(np.around(alpha_high_mass,decimals=2), 
                                            np.around(alpha_high_mass_error,decimals=2),
                                            np.around(alpha_low_mass,decimals=2),
                                            np.around(alpha_low_mass_error,decimals=2),
