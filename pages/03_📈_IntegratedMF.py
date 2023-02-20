@@ -207,26 +207,14 @@ col4  = st.columns(1)
 
 with container2:
     
-    st.write(
-    """
-    <style>
-    [data-testid="stMetricDelta"] svg {
-        display: none;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
     st.header("Mass function")
     
     with col4:
-    # st.metric("$\\alpha_{A}$", value=np.around(alpha_high_mass,decimals=2), 
-    #           delta="± {}".format(np.around(alpha_high_mass_error,decimals=2)), 
-    #           delta_color ='off')
+
         a = np.around(alpha_high_mass,decimals=2)
         b = np.around(alpha_high_mass_error,decimals=2)
         st.info('$\\alpha_{{A}}={}~\pm~{}$'.format(a,b), icon="💫")
     
-    st.write("All populations")
-    st.plotly_chart(plot_int, use_container_width=False)
+        st.write("All populations")
+        st.plotly_chart(plot_int, use_container_width=False)
     
