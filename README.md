@@ -4,7 +4,9 @@ This repository houses a dashboard developed in streamlit and plotly. The purpos
 
 🔗 [Dashboard - Revisiting the total mass of open clusters with Gaia data](https://ocmass.streamlit.app/)
 
-![dashboard_gif]([https://user-images.githubusercontent.com/70342250/192885272-deaca18c-6f77-4fa4-a881-3cae974dd146.gif](https://github.com/ander-son-almeida/DashboardOCmass/blob/main/images/dashboard_gif.gif))
+![dashboard_gif](https://raw.githubusercontent.com/ander-son-almeida/DashboardOCmass/main/images/dashboard_gif.gif)
+
+
 
 # Execution
 
