@@ -1,6 +1,6 @@
 # Project description
 
-This repository houses a dashboard developed in streamlit and plotly. The purpose of this application was to create an easily interaction accessible and public tool with the main results found in my research on the mass of open clusters using Gaia space probe data in its Edr3 data version.
+This repository houses a dashboard developed in streamlit and plotly. The purpose of this application was to create an easily interaction accessible and public tool with the main results found in my research on the mass of open clusters using Gaia space probe data in its EDR3 data version.
 
 🔗 [Dashboard - Revisiting the total mass of open clusters with Gaia data](https://ocmass.streamlit.app/)
 
