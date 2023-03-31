@@ -29,7 +29,7 @@ placeholder02 = st.empty()
 coluna.subheader("Fundamental Parameters")
 
 #number of stars
-nstars = coluna.number_input("Members:", value=1000, step=1)
+nstars = coluna.number_input("Initial Members:", value=1000, step=1)
 
 #slider dist
 dist_min = 0.1
