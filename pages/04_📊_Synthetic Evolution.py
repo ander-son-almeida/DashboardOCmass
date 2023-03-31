@@ -26,6 +26,9 @@ st.set_page_config(page_title="Synthetic Oc Evolution",layout='wide', page_icon=
 coluna = st.sidebar
 placeholder02 = st.empty()
     
+st.subheader(
+"This code is still under development, don't consider its results")
+
 coluna.subheader("Fundamental Parameters")
 
 #number of stars
