@@ -84,7 +84,7 @@ with container1:
                         format="%.1f")
 
 
-        (mod_cluster_obs, cor_obs, absMag_obs, fit_iso, total_mass) = synthetic(age, 
+        (mod_cluster_obs, mod_cluster, cor_obs, absMag_obs, fit_iso, total_mass) = synthetic(age, 
                                                                                 dist, 
                                                                                 Av, 
                                                                                 FeH, 

@@ -17,12 +17,10 @@ from oc_tools_padova_edr3 import *
 #load grif isocrones
 iso = np.load('full_isoc_Gaia_eDR3_CMD34.npy')
 
-
 Mlim = 21
 
 st.set_page_config(page_title="Synthetic Oc Evolution",layout='wide', page_icon='✨')
 
-# placeholder = st.empty()
 coluna = st.sidebar
 placeholder02 = st.empty()
     
@@ -78,9 +76,7 @@ bin_frac = coluna.slider("Binary Fraction",
                 step=0.1, 
                 format="%.1f")
         
-  
 age_range = np.arange(6.6, 10.13, 0.009)
-
 if st.button(" ▶️ Play"):
     progress_bar = st.empty()
     for i, age in enumerate(age_range):
@@ -120,7 +116,6 @@ if st.button(" ▶️ Play"):
         fig01.update_layout(xaxis_title= 'G_BP - G_RP (mag)',
                           yaxis_title="G (mag)",
                           coloraxis_colorbar=dict(title="M☉"),
-                          # yaxis_autorange="reversed",
                           yaxis_range=[22,2],
                           xaxis_range=[-1,6])
     
@@ -146,16 +141,11 @@ if st.button(" ▶️ Play"):
         fig02 = go.Figure(data = fig1.data + fig2.data + fig3.data).update_layout(coloraxis=fig1.layout.coloraxis)
         fig02.update_layout(xaxis_title= 'G_BP - G_RP (mag)',
                           yaxis_title="G (mag)",
-                          # yaxis_autorange="reversed"
                           yaxis_range=[22,2],
                           xaxis_range=[-1,6])
         
-
-        
         with placeholder02.container():   
-            
                 st.metric(label='log(age)', value= np.around(age, decimals=2))
-            
                 st.metric(label="Members", value=nstars)
     
                 container1 = st.container()
