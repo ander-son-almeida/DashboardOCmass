@@ -5,7 +5,6 @@ Created on Thu Mar 30 21:34:23 2023
 @author: Anderson Almeida
 """
 
-import matplotlib.pyplot as plt
 import pandas as pd
 from synthetic import *
 import streamlit as st
