@@ -62,7 +62,7 @@ def synthetic(age, dist, Av, FeH, bin_frac, nstars, Mlim):
     total_mass = np.around((np.sum(mod_cluster_obs['Mass'])) + 
                            (np.sum(mod_cluster_obs['comp_mass'])), decimals=2)
 
-    return mod_cluster_obs, cor_obs, absMag_obs,fit_iso, total_mass 
+    return mod_cluster_obs, mod_cluster, cor_obs, absMag_obs, fit_iso, total_mass 
 
 
 
