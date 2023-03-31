@@ -88,7 +88,7 @@ if st.button(" ▶️ Play"):
                                                                                 FeH, 
                                                                                 bin_frac, 
                                                                                 nstars, 
-                                                                                Mlim, dir)
+                                                                                Mlim)
         # Atualiza a barra de progresso
         progress_bar.progress((i+1) / len(age_range))
         
