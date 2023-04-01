@@ -144,12 +144,24 @@ if st.button(" ▶️ Play"):
                           yaxis_range=[22,2],
                           xaxis_range=[-1,6])
         
+        ###############################################################################################
+        # RA x DEC 
+        # the mass is arranged according to the mass of the primary
+        ind = np.argsort(mod_cluster_obs['Mass'])
+
+        ra_dec = pd.DataFrame({'RA': mod_cluster_obs['RA_ICRS'][ind], 
+                               'DEC': mod_cluster_obs['DE_ICRS'][ind], 'Mass': mod_cluster_obs['Mass'][ind]})
+
+        fig_ra_dec = px.scatter(ra_dec, x = 'RA', y = 'DEC', color= 'Mass', 
+                                color_continuous_scale = 'jet_r')
+
+        
         with placeholder02.container():   
                 st.metric(label='log(age)', value= np.around(age, decimals=2))
                 st.metric(label="Members", value=nstars)
     
                 container1 = st.container()
-                col1, col2  = st.columns(2)  
+                col1, col2, col3  = st.columns(3)  
                 
                 with container1:
    
@@ -158,6 +170,9 @@ if st.button(" ▶️ Play"):
                         
                     with col2:
                         st.plotly_chart(fig02, use_container_width=True)
+                        
+                    with col3:
+                        st.plotly_chart(fig_ra_dec, use_container_width=True)
                     
 
                         
