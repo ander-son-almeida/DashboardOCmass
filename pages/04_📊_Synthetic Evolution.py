@@ -154,6 +154,10 @@ if st.button(" ▶️ Play"):
 
         fig_ra_dec = px.scatter(ra_dec, x = 'RA', y = 'DEC', color= 'Mass', 
                                 color_continuous_scale = 'jet_r')
+        
+        fig_ra_dec.update_layout(
+                          yaxis_range=[-65.0,-64.9],
+                          xaxis_range=[232,233])
 
         
         with placeholder02.container():   
