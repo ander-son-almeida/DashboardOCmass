@@ -157,7 +157,7 @@ if st.button(" ▶️ Play"):
         
         fig_ra_dec.update_layout(
                           yaxis_range=[-65.0,-64.7],
-                          xaxis_range=[232.2,232.7])
+                          xaxis_range=[232.3,232.6])
 
         
         with placeholder02.container():   
