@@ -153,9 +153,9 @@ if st.button(" ▶️ Play"):
                                'DEC': mod_cluster_obs['DEC_ICRS'][ind], 'Mass': mod_cluster_obs['Mass'][ind]})
 
         fig_ra_dec = px.scatter(ra_dec, x = 'RA', y = 'DEC', color= 'Mass', 
-                                color_continuous_scale = 'jet_r')
+                                color_continuous_scale = 'jet_r', size=1/mod_cluster_obs['Mass'])
         
-        fig_ra_dec.update_layout(
+        fig_ra_dec.update_layout(coloraxis_colorbar=dict(title="M☉"),
                           yaxis_range=[-65.0,-64.7],
                           xaxis_range=[232.3,232.6])
 
