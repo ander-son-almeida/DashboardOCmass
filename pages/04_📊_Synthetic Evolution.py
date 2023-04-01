@@ -108,7 +108,7 @@ if st.button(" ▶️ Play"):
                                 'Gmag': fit_iso['Gmag']})
         
         fig1 = px.scatter(cmd_scatter, x = 'G_BPmag - G_RPmag', y = 'Gmag',
-                          opacity=0.6, color= 'Mass', color_continuous_scale = 'jet_r')
+                          opacity=0.6, color= 'Mass', color_continuous_scale = 'jet_r', size=mod_cluster_obs['Mass'])
         
         fig2 = px.line(cmd_iso, x = 'G_BPmag - G_RPmag', y = 'Gmag')
         
