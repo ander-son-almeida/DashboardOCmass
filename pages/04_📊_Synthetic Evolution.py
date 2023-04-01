@@ -150,7 +150,7 @@ if st.button(" ▶️ Play"):
         ind = np.argsort(mod_cluster_obs['Mass'])
 
         ra_dec = pd.DataFrame({'RA': mod_cluster_obs['RA_ICRS'][ind], 
-                               'DEC': mod_cluster_obs['DE_ICRS'][ind], 'Mass': mod_cluster_obs['Mass'][ind]})
+                               'DEC': mod_cluster_obs['DEC_ICRS'][ind], 'Mass': mod_cluster_obs['Mass'][ind]})
 
         fig_ra_dec = px.scatter(ra_dec, x = 'RA', y = 'DEC', color= 'Mass', 
                                 color_continuous_scale = 'jet_r')
