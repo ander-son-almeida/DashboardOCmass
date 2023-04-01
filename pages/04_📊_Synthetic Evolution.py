@@ -156,8 +156,8 @@ if st.button(" ▶️ Play"):
                                 color_continuous_scale = 'jet_r')
         
         fig_ra_dec.update_layout(
-                          yaxis_range=[-65.0,-64.9],
-                          xaxis_range=[232,233])
+                          yaxis_range=[-65.0,-64.7],
+                          xaxis_range=[232.2,232.7])
 
         
         with placeholder02.container():   
