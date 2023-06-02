@@ -100,7 +100,7 @@ if st.button(" ▶️ Play"):
         absMag_obs = absMag_obs[crop]
         
         ###############################################################################################
-        
+        # CMD com massa
         cmd_scatter = pd.DataFrame({'G_BPmag - G_RPmag': cor_obs, 'Gmag': absMag_obs, 
                                     'Mass': mod_cluster_obs['Mass']})
         
@@ -120,6 +120,7 @@ if st.button(" ▶️ Play"):
                           xaxis_range=[-1,6])
     
         ###############################################################################################
+        # CMD com binarias
         
         ind_single = mod_cluster_obs['bin_flag'] == 0
         ind_bin = mod_cluster_obs['bin_flag'] == 1
@@ -131,7 +132,7 @@ if st.button(" ▶️ Play"):
                                 'Gmag': fit_iso['Gmag']})
         
         fig1 = px.scatter(scatter_single, x = 'G_BPmag - G_RPmag', y = 'Gmag',
-                          opacity=0.9)
+                          opacity=0.9, name='Single')
         
         fig2 = px.scatter(scatter_bin, x = 'G_BPmag - G_RPmag', y = 'Gmag',
                           opacity=0.6 , color_discrete_sequence=['orange'])
