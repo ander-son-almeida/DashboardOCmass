@@ -132,7 +132,7 @@ if st.button(" ▶️ Play"):
                                 'Gmag': fit_iso['Gmag']})
         
         fig1 = px.scatter(scatter_single, x = 'G_BPmag - G_RPmag', y = 'Gmag',
-                          opacity=0.9, name='Single')
+                          opacity=0.9)
         
         fig2 = px.scatter(scatter_bin, x = 'G_BPmag - G_RPmag', y = 'Gmag',
                           opacity=0.6 , color_discrete_sequence=['orange'])
