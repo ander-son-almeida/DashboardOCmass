@@ -159,6 +159,7 @@ seg.update_layout(xaxis_title= 'Distance (pc)',
                   xaxis_range=[1,xaxis_max.max()],
                   yaxis_range=[0,yaxis_max.max()+0.02])
 
+seg.update_yaxes(scaleanchor = "x",scaleratio = 1)
 
 ###############################################################################	
 # FM Single
