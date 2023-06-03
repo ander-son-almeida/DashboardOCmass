@@ -71,7 +71,7 @@ if ticket_on_off:
     # apply filter
     cluster = cluster[filtro]
     cluster = cluster.reset_index()
-    cluster = cluster.to_records()
+    # cluster = cluster.to_records()
     
 
 # Interface: Select clusters name
