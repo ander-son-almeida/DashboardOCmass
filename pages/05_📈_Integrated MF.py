@@ -49,7 +49,7 @@ ticket_on_off = st.sidebar.checkbox("Fundamental Parameter Filter")
 
 if ticket_on_off:
     age_range = st.sidebar.slider('log(age):', cluster['age'].min(), cluster['age'].max(), (7.0, 8.5), 0.1)
-    # dist_range = st.sidebar.slider('Dist. (Kpc):', cluster['dist'].min(), cluster['dist'].max())
+    dist_range = st.sidebar.slider('Dist. (Kpc):', cluster['dist'].min(), cluster['dist'].max(), (1.0, 3.0), 0.1)
     # Av_range = st.sidebar.slider('Av (mag):', cluster['dist'].min(), cluster['dist'].max())
     # FeH_range = st.sidebar.slider('FeH:', cluster['FeH'].min(), cluster['FeH'].max())
 
