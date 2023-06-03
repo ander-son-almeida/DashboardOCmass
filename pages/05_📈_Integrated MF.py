@@ -53,7 +53,22 @@ if ticket_on_off:
     Av_range = st.sidebar.slider('Av (mag):', cluster['Av'].min(), cluster['Av'].max(), (0.01, 2.0), 0.1)
     FeH_range = st.sidebar.slider('FeH:', cluster['FeH'].min(), cluster['FeH'].max(), (-0.37, 0.0), 0.1)
 
+faixas = {
+    'age': age_range,   # Valores entre 2 e 4 (inclusive)
+    'dist': dist_range,  # Valores entre 15 e 35 (inclusive)
+    'Av': Av_range,  # Valores entre 200 e 400 (inclusive)
+    'FeH': FeH_range,  # Valores entre 1500 e 4500 (inclusive)
+}
 
+filtro = (
+    (cluster['age'].between(*faixas['age'])) &
+    (cluster['dist'].between(*faixas['dist'])) &
+    (cluster['Av'].between(*faixas['Av'])) &
+    (cluster['FeH'].between(*faixas['FeH'])) 
+)
+
+# apply filter
+cluster = cluster[filtro]
 
 
 # Interface: Select clusters name
