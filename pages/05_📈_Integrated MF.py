@@ -48,6 +48,7 @@ cluster = cluster[a_ind]
 ticket_on_off = st.sidebar.checkbox("Fundamental Parameter Filter")
 
 if ticket_on_off:
+    cluster = cluster.from_records()
     age_range = st.sidebar.slider('log(age):', cluster['age'].min(), cluster['age'].max(), (6.6, 8.5), 0.1)
     dist_range = st.sidebar.slider('Dist. (Kpc):', cluster['dist'].min(), cluster['dist'].max(), (0.2, 3.0), 0.1)
     Av_range = st.sidebar.slider('Av (mag):', cluster['Av'].min(), cluster['Av'].max(), (0.01, 2.0), 0.1)
