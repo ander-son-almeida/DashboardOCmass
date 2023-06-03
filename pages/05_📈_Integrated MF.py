@@ -70,8 +70,8 @@ if ticket_on_off:
     
     # apply filter
     cluster = cluster[filtro]
-    cluster = cluster.reset_index(drop=True)
-
+    
+cluster = cluster.reset_index(drop=True)
 
 # Interface: Select clusters name
 list_clusters = cluster['Cluster']
