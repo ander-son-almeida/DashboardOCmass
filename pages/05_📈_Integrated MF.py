@@ -43,6 +43,18 @@ cluster = cluster[a_ind]
 # ab, a_ind, b_ind = np.intersect1d(cluster['Cluster'],filtro['clusters_bons'],  return_indices=True)
 # cluster = cluster[a_ind]
 
+###############################################################################
+#fundamental parameter filter
+ticket_on_off = st.sidebar.checkbox("On/Off")
+
+if ticket_on_off:
+    age_range = st.sidebar.slider('log(age):', cluster['age'].min(), cluster['age'].max())
+    dist_range = st.sidebar.slider('Dist. (Kpc):', cluster['dist'].min(), cluster['dist'].max())
+    Av_range = st.sidebar.slider('Av (mag):', cluster['dist'].min(), cluster['dist'].max())
+    FeH_range = st.sidebar.slider('FeH:', cluster['FeH'].min(), cluster['FeH'].max())
+
+
+
 
 # Interface: Select clusters name
 list_clusters = cluster['Cluster']
