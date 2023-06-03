@@ -89,7 +89,7 @@ members_ship = np.load('data/membership_data_edr3/{}_data_stars.npy'.format(clus
 # select fundamental parameters cluster	
 ind = np.where(cluster['Cluster'] == cluster_name)
 
-print('valor do index', ind)
+st.sidebar.subheader("Fundamental parameters:", ind)
 
 RA = cluster['RA_ICRS'][ind]
 DEC = cluster['DE_ICRS'][ind]
