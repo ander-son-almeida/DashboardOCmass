@@ -70,7 +70,7 @@ if ticket_on_off:
     
     # apply filter
     cluster = cluster[filtro]
-    cluster = cluster.to_records()
+    # cluster = cluster.to_records()
     # cluster = cluster.reset_index()
 
     
@@ -88,6 +88,8 @@ members_ship = np.load('data/membership_data_edr3/{}_data_stars.npy'.format(clus
 
 # select fundamental parameters cluster	
 ind = np.where(cluster['Cluster'] == cluster_name)
+
+print('valor do index', ind)
 
 RA = cluster['RA_ICRS'][ind]
 DEC = cluster['DE_ICRS'][ind]
