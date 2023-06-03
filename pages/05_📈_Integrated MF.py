@@ -87,7 +87,7 @@ members_ship = np.load('data/membership_data_edr3/{}_data_stars.npy'.format(clus
 # members_ship = np.load(r'S:\Área de Trabalho\DashboardOCmass\data\membership_data_edr3\{}_data_stars.npy'.format(cluster_name))
 
 # select fundamental parameters cluster	
-ind = np.where(cluster['Cluster'] == cluster_name)
+ind = (np.where(cluster['Cluster'] == cluster_name)).iloc[0]
 
 
 RA = cluster['RA_ICRS'][ind]
