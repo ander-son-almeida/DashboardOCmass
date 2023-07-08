@@ -107,7 +107,7 @@ KSTest = cluster['mass_seg'][ind]
 KSTest_pval = cluster['mass_seg'][ind]
 
 #download button
-st.download_button('Download .npy file', members_ship)
+# st.download_button('Download .npy file', members_ship)
 
 # bar with fundamental parameters
 st.sidebar.subheader("Fundamental parameters:")
