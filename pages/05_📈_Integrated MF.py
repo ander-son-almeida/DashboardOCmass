@@ -112,9 +112,9 @@ if st.button('Baixar arquivo .npy'):
     file_download = 'data/membership_data_edr3/{}_data_stars.npy'.format(cluster_name)
         
     # Configuração do botão de download
-    st.download_button(label='Clique aqui para baixar',
-                       data=file_download, file_name='arquivo.npy', 
-                       mime='application/octet-stream')
+    st.sidebar(st.download_button(label='Clique aqui para baixar',
+                       data=file_download, file_name='{}.npy'.format(cluster_name), 
+                       mime='application/octet-stream'))
 
 
 # bar with fundamental parameters
