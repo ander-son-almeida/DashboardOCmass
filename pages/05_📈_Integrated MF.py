@@ -106,21 +106,15 @@ bin_frac = cluster['bin_frac'][ind]
 KSTest = cluster['mass_seg'][ind]
 KSTest_pval = cluster['mass_seg'][ind]
 
-# #download button
-# def get_download_link(file_path):
-#     with open(file_path, 'rb') as file:
-#         file_data = file.read()
-#         file_name = file.name
+
+# Nome do arquivo de saída
+if st.button('Baixar arquivo .npy'):
+    file_download = 'data/membership_data_edr3/{}_data_stars.npy'.format(cluster_name)
         
-#     return f'<a href="data:file/npy;base64,{file_data}" download="{file_name}">Clique aqui para baixar</a>'
-
-# # Botão para fazer o download
-# if st.button('Baixar arquivo .npy'):
-#     # Nome do arquivo de saída
-nome_arquivo = 'data/membership_data_edr3/{}_data_stars.npy'.format(cluster_name)
-
-# Gerar o link de download
-st.sidebar.subheader(st.download_button('Download binary file', nome_arquivo))
+    # Configuração do botão de download
+    st.download_button(label='Clique aqui para baixar',
+                       data=file_download, file_name='arquivo.npy', 
+                       mime='application/octet-stream')
 
 
 # bar with fundamental parameters
