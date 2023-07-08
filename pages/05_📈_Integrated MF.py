@@ -106,6 +106,9 @@ bin_frac = cluster['bin_frac'][ind]
 KSTest = cluster['mass_seg'][ind]
 KSTest_pval = cluster['mass_seg'][ind]
 
+#download button
+st.sidebar.subheader(st.download_button('Download .npy file', members_ship))
+
 # bar with fundamental parameters
 st.sidebar.subheader("Fundamental parameters:")
 st.sidebar.subheader("$log(age) = {} \pm {}$".format(age[0], e_age[0]))
