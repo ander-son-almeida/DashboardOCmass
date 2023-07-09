@@ -14,6 +14,7 @@ import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
 from oc_tools_padova_edr3 import *
+import io
 
 st.set_page_config(page_title="IntegratedMF",layout='wide', page_icon='📈')
 
@@ -111,6 +112,16 @@ KSTest_pval = cluster['mass_seg'][ind]
 # st.download_button(label='Download {}.npy file'.format(cluster_name),
 #                    data=file_download, file_name='{}.npy'.format(cluster_name), 
 #                    mime='application/octet-stream')
+
+# Create an in-memory buffer
+with io.BytesIO() as buffer:
+    # Write array to buffer
+    np.save(buffer, members_ship)
+    btn = st.download_button(
+        label="Download {}".format(cluster_name),
+        data = buffer, # Download buffer
+        file_name = '{}.npy'.format(cluster_name)
+    ) 
 
 # bar with fundamental parameters
 st.sidebar.subheader("Fundamental parameters:")
