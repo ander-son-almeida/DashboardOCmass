@@ -46,31 +46,31 @@ cluster = cluster[a_ind]
 
 ###############################################################################
 #fundamental parameter filter
-# ticket_on_off = st.sidebar.checkbox("Fundamental Parameter Filter")
+ticket_on_off = st.sidebar.checkbox("Fundamental Parameter Filter")
 
-# if ticket_on_off:
-#     cluster = pd.DataFrame(cluster)
-#     age_range = st.sidebar.slider('log(age):', cluster['age'].min(), cluster['age'].max(), (6.6, 8.5), 0.1)
-#     dist_range = st.sidebar.slider('Dist. (Kpc):', cluster['dist'].min(), cluster['dist'].max(), (0.2, 3.0), 0.1)
-#     Av_range = st.sidebar.slider('Av (mag):', cluster['Av'].min(), cluster['Av'].max(), (0.01, 2.0), 0.1)
-#     FeH_range = st.sidebar.slider('FeH:', cluster['FeH'].min(), cluster['FeH'].max(), (-0.37, 0.0), 0.1)
+if ticket_on_off:
+    cluster = pd.DataFrame(cluster)
+    age_range = st.sidebar.slider('log(age):', cluster['age'].min(), cluster['age'].max(), (6.6, 8.5), 0.1)
+    dist_range = st.sidebar.slider('Dist. (Kpc):', cluster['dist'].min(), cluster['dist'].max(), (0.2, 3.0), 0.1)
+    Av_range = st.sidebar.slider('Av (mag):', cluster['Av'].min(), cluster['Av'].max(), (0.01, 2.0), 0.1)
+    FeH_range = st.sidebar.slider('FeH:', cluster['FeH'].min(), cluster['FeH'].max(), (-0.37, 0.0), 0.1)
 
-#     faixas = {
-#         'age': age_range,   
-#         'dist': dist_range,  
-#         'Av': Av_range,  
-#         'FeH': FeH_range,
-#     }
+    faixas = {
+        'age': age_range,   
+        'dist': dist_range,  
+        'Av': Av_range,  
+        'FeH': FeH_range,
+    }
     
-#     filtro = (
-#         (cluster['age'].between(*faixas['age'])) &
-#         (cluster['dist'].between(*faixas['dist'])) &
-#         (cluster['Av'].between(*faixas['Av'])) &
-#         (cluster['FeH'].between(*faixas['FeH'])) 
-#     )
+    filtro = (
+        (cluster['age'].between(*faixas['age'])) &
+        (cluster['dist'].between(*faixas['dist'])) &
+        (cluster['Av'].between(*faixas['Av'])) &
+        (cluster['FeH'].between(*faixas['FeH'])) 
+    )
     
-#     # apply filter
-#     cluster = cluster[filtro]
+    # apply filter
+    cluster = cluster[filtro]
 
 
     
