@@ -112,10 +112,10 @@ KSTest_pval = cluster['mass_seg'][ind]
 with io.BytesIO() as buffer:
     # Write array to buffer
     np.save(buffer, members_ship)
-    btn = st.sidebar(st.download_button(
+    btn = st.sidebar.download_button(
         label="Download {}".format(cluster_name),
         data = buffer, # Download buffer
-        file_name = '{}.npy'.format(cluster_name))
+        file_name = '{}.npy'.format(cluster_name)
     ) 
 
 # bar with fundamental parameters
