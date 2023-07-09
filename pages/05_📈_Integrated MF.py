@@ -78,14 +78,14 @@ if ticket_on_off:
     # )
     
     # apply filter
-    cluster = cluster[(cluster >= age_min) &
-                      (cluster <= age_max) &
-                      (cluster >= dist_min) &
-                      (cluster <= dist_max) &
-                      (cluster >= Av_min) &
-                      (cluster <= Av_max) &
-                      (cluster >= FeH_min) &
-                      (cluster <= FeH_max)
+    cluster = cluster[(cluster['age'] >= age_min) &
+                      (cluster['age'] <= age_max) &
+                      (cluster['dist'] >= dist_min) &
+                      (cluster['dist'] <= dist_max) &
+                      (cluster['Av'] >= Av_min) &
+                      (cluster['Av'] <= Av_max) &
+                      (cluster['FeH'] >= FeH_min) &
+                      (cluster['FeH'] <= FeH_max)
         ]
 
     
