@@ -54,23 +54,40 @@ if ticket_on_off:
     Av_range = st.sidebar.slider('Av (mag):', cluster['Av'].min(), cluster['Av'].max(), (0.01, 2.0), 0.1)
     FeH_range = st.sidebar.slider('FeH:', cluster['FeH'].min(), cluster['FeH'].max(), (-0.37, 0.0), 0.1)
 
-    faixas = {
-        'age': age_range,   
-        'dist': dist_range,  
-        'Av': Av_range,  
-        'FeH': FeH_range,
-    }
+    # faixas = {
+    #     'age': age_range,   
+    #     'dist': dist_range,  
+    #     'Av': Av_range,  
+    #     'FeH': FeH_range,
+    # }
     
-    filtro = (
-        (cluster['age'].between(*faixas['age'])) &
-        (cluster['dist'].between(*faixas['dist'])) &
-        (cluster['Av'].between(*faixas['Av'])) &
-        (cluster['FeH'].between(*faixas['FeH'])) 
-    )
+    age_min = min(age_range)
+    age_max = max(age_range)
+    dist_min =  min(dist_range)
+    dist_max = max(dist_range)
+    Av_min = min(Av_range)
+    Av_max =  max(Av_range)
+    FeH_min = min(FeH_range)
+    FeH_max = max(FeH_range)
+    
+    # filtro = (
+    #     (cluster['age'].between(*faixas['age'])) &
+    #     (cluster['dist'].between(*faixas['dist'])) &
+    #     (cluster['Av'].between(*faixas['Av'])) &
+    #     (cluster['FeH'].between(*faixas['FeH'])) 
+    # )
     
     # apply filter
-    # cluster = cluster[filtro]
-    # cluster =  cluster.to_records()
+    cluster = cluster[(cluster >= age_min) &
+                      (cluster <= age_max) &
+                      (cluster >= dist_min) &
+                      (cluster <= dist_max) &
+                      (cluster >= Av_min) &
+                      (cluster <= Av_max) &
+                      (cluster >= FeH_min) &
+                      (cluster <= FeH_max)
+        ]
+
     
 # Interface: Select clusters name
 list_clusters = cluster['Cluster']
