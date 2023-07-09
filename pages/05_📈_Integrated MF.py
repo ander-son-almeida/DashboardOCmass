@@ -115,9 +115,12 @@ with io.BytesIO() as buffer:
     btn = st.sidebar.download_button(
         label="Download {}".format(cluster_name),
         data = buffer, # Download buffer
-        file_name = '{}.npy'.format(cluster_name),
-        help ='Download the .npy file of the open cluster. It includes the values of individual masses determined by us.'
+        file_name = '{}.npy'.format(cluster_name)
     ) 
+
+st.sidebar.info('Download the .npy file of the open cluster. In it, you will \n'
+    'find the values of individual masses determined by us, \n'
+   'along with other Gaia parameters.')
 
 # bar with fundamental parameters
 st.sidebar.subheader("Fundamental parameters:")
