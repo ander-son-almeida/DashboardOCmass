@@ -113,7 +113,7 @@ with io.BytesIO() as buffer:
     # Write array to buffer
     np.save(buffer, members_ship)
     btn = st.sidebar.download_button(
-        label="Download {}".format(cluster_name),
+        label="Download",
         data = buffer, # Download buffer
         file_name = '{}.npy'.format(cluster_name)
     ) 
