@@ -27,23 +27,6 @@ refMag = 'Gmag'
 cluster = pd.read_csv('data/log-results-eDR3-MF_integrada.csv', sep=';')
 cluster = cluster.to_records()
            
-# Filter detailed MF
-filtro1 = pd.read_csv('filters/amostra_MF_integrada.csv', sep=';')
-filtro = filtro1.to_records()  
-ab, a_ind, b_ind = np.intersect1d(cluster['Cluster'],filtro['clusters_bons'],  return_indices=True)
-cluster = cluster[a_ind]
-
-
-# # fundamental parameters
-# cluster = pd.read_csv(r'S:\Área de Trabalho\DashboardOCmass\data\log-results-eDR3-MF_integrada.csv', sep=';')
-# cluster = cluster.to_records()
-           
-# # Filter detailed MF
-# filtro1 = pd.read_csv(r'S:\Área de Trabalho\DashboardOCmass\filters\amostra_MF_integrada.csv', sep=';')
-# filtro = filtro1.to_records()  
-# ab, a_ind, b_ind = np.intersect1d(cluster['Cluster'],filtro['clusters_bons'],  return_indices=True)
-# cluster = cluster[a_ind]
-
 ###############################################################################
 #fundamental parameter filter
 ticket_on_off = st.sidebar.checkbox("Fundamental Parameter Filter")
@@ -71,6 +54,26 @@ if ticket_on_off:
     
     # apply filter
     cluster = cluster[filtro]
+
+
+# Filter detailed MF
+filtro1 = pd.read_csv('filters/amostra_MF_integrada.csv', sep=';')
+filtro = filtro1.to_records()  
+ab, a_ind, b_ind = np.intersect1d(cluster['Cluster'],filtro['clusters_bons'],  return_indices=True)
+cluster = cluster[a_ind]
+
+
+# # fundamental parameters
+# cluster = pd.read_csv(r'S:\Área de Trabalho\DashboardOCmass\data\log-results-eDR3-MF_integrada.csv', sep=';')
+# cluster = cluster.to_records()
+           
+# # Filter detailed MF
+# filtro1 = pd.read_csv(r'S:\Área de Trabalho\DashboardOCmass\filters\amostra_MF_integrada.csv', sep=';')
+# filtro = filtro1.to_records()  
+# ab, a_ind, b_ind = np.intersect1d(cluster['Cluster'],filtro['clusters_bons'],  return_indices=True)
+# cluster = cluster[a_ind]
+
+
 
 
     
