@@ -115,7 +115,8 @@ with io.BytesIO() as buffer:
     btn = st.sidebar.download_button(
         label="Download {}".format(cluster_name),
         data = buffer, # Download buffer
-        file_name = '{}.npy'.format(cluster_name)
+        file_name = '{}.npy'.format(cluster_name),
+        help='teste teste'
     ) 
 
 # bar with fundamental parameters
