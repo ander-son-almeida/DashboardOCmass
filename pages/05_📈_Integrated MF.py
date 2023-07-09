@@ -33,14 +33,7 @@ filtro = filtro1.to_records()
 ab, a_ind, b_ind = np.intersect1d(cluster['Cluster'],filtro['clusters_bons'],  return_indices=True)
 cluster = cluster[a_ind]
 
-
-# reset record array
-cluster = np.empty(cluster.shape, dtype=cluster.dtype)
-cluster[:] = cluster
-cluster['index'] = np.arange(len(cluster))
-
-
-# # fundamental parameters
+# fundamental parameters
 # cluster = pd.read_csv(r'S:\Área de Trabalho\DashboardOCmass\data\log-results-eDR3-MF_integrada.csv', sep=';')
 # cluster = cluster.to_records()
            
@@ -76,7 +69,7 @@ if ticket_on_off:
     )
     
     # apply filter
-    cluster = cluster[filtro]
+    cluster = (cluster[filtro]).to_records()
 
     
 # Interface: Select clusters name
