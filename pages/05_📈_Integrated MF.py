@@ -69,7 +69,8 @@ if ticket_on_off:
     )
     
     # apply filter
-    cluster = (cluster[filtro]).to_records()
+    cluster = cluster[filtro]
+    cluster =  cluster.to_records()
     
     # Filter detailed MF
     filtro1 = pd.read_csv('filters/amostra_MF_integrada.csv', sep=';')
