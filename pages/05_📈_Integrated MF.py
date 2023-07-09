@@ -107,20 +107,15 @@ bin_frac = cluster['bin_frac'][ind]
 KSTest = cluster['mass_seg'][ind]
 KSTest_pval = cluster['mass_seg'][ind]
 
-# #download
-# file_download = 'data/membership_data_edr3/{}_data_stars.npy'.format(cluster_name)
-# st.download_button(label='Download {}.npy file'.format(cluster_name),
-#                    data=file_download, file_name='{}.npy'.format(cluster_name), 
-#                    mime='application/octet-stream')
 
 # Create an in-memory buffer
 with io.BytesIO() as buffer:
     # Write array to buffer
     np.save(buffer, members_ship)
-    btn = st.download_button(
+    btn = st.sidebar(st.download_button(
         label="Download {}".format(cluster_name),
         data = buffer, # Download buffer
-        file_name = '{}.npy'.format(cluster_name)
+        file_name = '{}.npy'.format(cluster_name))
     ) 
 
 # bar with fundamental parameters
