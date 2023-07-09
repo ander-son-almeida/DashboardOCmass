@@ -116,7 +116,9 @@ with io.BytesIO() as buffer:
         label="Download {}".format(cluster_name),
         data = buffer, # Download buffer
         file_name = '{}.npy'.format(cluster_name),
-        help='teste teste'
+        help ='Download the .npy file of the open cluster. In it, you will \
+            find the values of individual masses determined by us, \
+            along with other Gaia parameters.'
     ) 
 
 # bar with fundamental parameters
