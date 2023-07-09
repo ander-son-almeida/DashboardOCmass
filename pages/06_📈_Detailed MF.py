@@ -45,6 +45,38 @@ cluster = cluster[a_ind]
 # ab, a_ind, b_ind = np.intersect1d(cluster['Cluster'],filtro['clusters_bons'],  return_indices=True)
 # cluster = cluster[a_ind]
 
+###############################################################################
+#fundamental parameter filter
+ticket_on_off = st.sidebar.checkbox("Fundamental Parameter Filter")
+
+if ticket_on_off:
+
+    age_range = st.sidebar.slider('log(age):', cluster['age'].min(), cluster['age'].max(), (6.6, 8.5), 0.1)
+    dist_range = st.sidebar.slider('Dist. (Kpc):', cluster['dist'].min(), cluster['dist'].max(), (0.2, 3.0), 0.1)
+    Av_range = st.sidebar.slider('Av (mag):', cluster['Av'].min(), cluster['Av'].max(), (0.01, 2.0), 0.1)
+    FeH_range = st.sidebar.slider('FeH:', cluster['FeH'].min(), cluster['FeH'].max(), (-0.37, 0.0), 0.1)
+
+    age_min = min(age_range)
+    age_max = max(age_range)
+    dist_min =  min(dist_range)
+    dist_max = max(dist_range)
+    Av_min = min(Av_range)
+    Av_max =  max(Av_range)
+    FeH_min = min(FeH_range)
+    FeH_max = max(FeH_range)
+
+    # apply filter
+    cluster = cluster[(cluster['age'] >= age_min) &
+                      (cluster['age'] <= age_max) &
+                      (cluster['dist'] >= dist_min) &
+                      (cluster['dist'] <= dist_max) &
+                      (cluster['Av'] >= Av_min) &
+                      (cluster['Av'] <= Av_max) &
+                      (cluster['FeH'] >= FeH_min) &
+                      (cluster['FeH'] <= FeH_max)
+        ]
+
+
 
 # Interface: Select clusters name
 list_clusters = cluster['Cluster']
