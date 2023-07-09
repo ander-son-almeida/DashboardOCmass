@@ -70,6 +70,12 @@ if ticket_on_off:
     
     # apply filter
     cluster = (cluster[filtro]).to_records()
+    
+    # Filter detailed MF
+    filtro1 = pd.read_csv('filters/amostra_MF_integrada.csv', sep=';')
+    filtro = filtro1.to_records()  
+    ab, a_ind, b_ind = np.intersect1d(cluster['Cluster'],filtro['clusters_bons'],  return_indices=True)
+    cluster = cluster[a_ind]
 
     
 # Interface: Select clusters name
