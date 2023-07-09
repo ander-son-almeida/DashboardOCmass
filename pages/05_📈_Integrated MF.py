@@ -48,7 +48,7 @@ cluster = cluster[a_ind]
 ticket_on_off = st.sidebar.checkbox("Fundamental Parameter Filter")
 
 if ticket_on_off:
-    cluster = pd.DataFrame(cluster)
+    # cluster = pd.DataFrame(cluster)
     age_range = st.sidebar.slider('log(age):', cluster['age'].min(), cluster['age'].max(), (6.6, 8.5), 0.1)
     dist_range = st.sidebar.slider('Dist. (Kpc):', cluster['dist'].min(), cluster['dist'].max(), (0.2, 3.0), 0.1)
     Av_range = st.sidebar.slider('Av (mag):', cluster['Av'].min(), cluster['Av'].max(), (0.01, 2.0), 0.1)
@@ -69,15 +69,8 @@ if ticket_on_off:
     )
     
     # apply filter
-    cluster = cluster[filtro]
-    cluster =  cluster.to_records()
-    
-    # Filter detailed MF
-    filtro1 = pd.read_csv('filters/amostra_MF_integrada.csv', sep=';')
-    filtro = filtro1.to_records()  
-    ab, a_ind, b_ind = np.intersect1d(cluster['Cluster'],filtro['clusters_bons'],  return_indices=True)
-    cluster = cluster[a_ind]
-
+    # cluster = cluster[filtro]
+    # cluster =  cluster.to_records()
     
 # Interface: Select clusters name
 list_clusters = cluster['Cluster']
