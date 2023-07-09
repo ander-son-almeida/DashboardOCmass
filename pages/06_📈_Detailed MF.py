@@ -76,6 +76,21 @@ bin_frac = cluster['bin_frac'][ind]
 KSTest = cluster['mass_seg'][ind]
 KSTest_pval = cluster['mass_seg'][ind]
 
+# Create an in-memory buffer
+with io.BytesIO() as buffer:
+    # Write array to buffer
+    np.save(buffer, members_ship)
+    btn = st.sidebar.download_button(
+        label="Download",
+        data = buffer, # Download buffer
+        file_name = '{}.npy'.format(cluster_name)
+    ) 
+
+st.sidebar.info('Download the .npy file of the open cluster. In it, you will \n'
+    'find the values of individual masses determined by us, \n'
+   'along with other Gaia parameters.')
+
+
 # bar with fundamental parameters
 st.sidebar.subheader("Fundamental parameters:")
 st.sidebar.subheader("$log(age) = {} \pm {}$".format(age[0], e_age[0]))
