@@ -81,22 +81,22 @@ st.write('''
          for the synthetic cluster solely to efficiently sample the CMD region where binaries 
          are likely to be located. The actual distribution of mass fractions in binary systems 
          for a given observed cluster is determined a posteriori from the estimated stellar masses. 
-         The procedure is illustrated in Fig. \ref{fig:sobreposicoes} where we have generated a 
+         The procedure is illustrated in Fig. fig:sobreposicoes where we have generated a 
          simulated open cluster with 50 member stars overlaid on a synthetic cluster generated 
          with the same referenced parameters with 10000 synthetic stars.
 
         To validate the stellar mass estimation method, a grid of synthetic clusters was generated 
         with log(age) varying from 6.6 to 9.5; reddening from 0.5 to 3.0 magnitudes; distances 
-        from 1 to 5 kpc and with 300 observed stars, 50\% of which are binary systems. We then 
+        from 1 to 5 kpc and with 300 observed stars, 50% of which are binary systems. We then 
         compared the results of our mass estimation procedure to the input masses of the generated 
-        grid. In Fig. \ref{fig:mass_error} we show an example of the validation for a simulated 
+        grid. In Fig. fig:mass_error we show an example of the validation for a simulated 
         cluster of log(age) = 8.5, distance = 1.0 kpc, and $A_v$ = 1.0 mag. We can see that 
         results are in good agreement with the input synthetic masses, with binary systems showing 
         larger differences as expected.
 
 
     The individual mass estimates also vary with respect to cluster ages and distances, 
-    as shown in Fig. \ref{fig:indMass_error}. As expected, the relative errors are 
+    as shown in Fig. fig:indMass_error. As expected, the relative errors are 
     worst for binaries and increase with age and distance, also with increasing spread. 
     The behaviour is expected as the photometric errors affect proportionally more 
     the clusters at higher distances. Young clusters also show larger uncertainties 
