@@ -47,7 +47,7 @@ cluster = cluster[a_ind]
 
 ###############################################################################
 #fundamental parameter filter
-ticket_on_off = st.sidebar.checkbox("Fundamental Parameter Filter")
+ticket_on_off = st.sidebar.checkbox("Parameter Filter")
 
 if ticket_on_off:
 
