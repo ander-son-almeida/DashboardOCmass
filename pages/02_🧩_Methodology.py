@@ -81,7 +81,7 @@ st.write('''
          for the synthetic cluster solely to efficiently sample the CMD region where binaries 
          are likely to be located. The actual distribution of mass fractions in binary systems 
          for a given observed cluster is determined a posteriori from the estimated stellar masses. 
-         The procedure is illustrated in Fig. fig:sobreposicoes where we have generated a 
+         The procedure is illustrated in Fig. sobreposicoes where we have generated a 
          simulated open cluster with 50 member stars overlaid on a synthetic cluster generated 
          with the same referenced parameters with 10000 synthetic stars.
 
@@ -89,7 +89,7 @@ st.write('''
          with log(age) varying from 6.6 to 9.5; reddening from 0.5 to 3.0 magnitudes; distances 
          from 1 to 5 kpc and with 300 observed stars, 50% of which are binary systems. We then 
          compared the results of our mass estimation procedure to the input masses of the generated 
-         grid. In Fig. fig:mass_error we show an example of the validation for a simulated 
+         grid. In Fig. mass_error we show an example of the validation for a simulated 
          cluster of log(age) = 8.5, distance = 1.0 kpc, and $A_v$ = 1.0 mag. We can see that 
          results are in good agreement with the input synthetic masses, with binary systems showing 
          larger differences as expected.
