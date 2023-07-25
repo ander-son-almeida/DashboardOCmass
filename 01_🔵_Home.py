@@ -14,7 +14,7 @@ st.set_page_config(page_title="Home",layout='centered', page_icon='🔵')
 
 st.sidebar.image("images/logo.png", use_column_width=True)
 
-st.title('Revisiting the total mass of open clusters with Gaia data')
+st.title('Revisiting the mass of open clusters with Gaia data')
 
 st.subheader('Anderson Almeida, Hektor Monteiro, Wilton S. Dias')
 st.write('Universidade Federal de Itajubá')
