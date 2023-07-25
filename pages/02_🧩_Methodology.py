@@ -34,7 +34,6 @@ st.write('🔹 after calculating individual star masses, we obtain the present-d
 st.write('🔹 the fitted present-day mass function is subsequently used to extrapolate the population of unseen low-mass stars, as well as the unseen mass in remnants of evolved stars')
 st.write('🔹 the mass obtained for the observed stars (single and binary), the mass of unseen low mass stars, the mass of remnants of evolved stars and the contribution of unseen binaries are added to obtain the final mass of the cluster.')
 
-st.subheader('Determination of stellar masses')
 
 st.write('''
 In our procedure, the estimation of the mass of each member star observed in a given 
@@ -67,6 +66,43 @@ st.latex(r'''
 st.write('''
          where $d_i$ is the minimum distance of the star of the observed cluster $O$, 
          to the $s$ stars in the synthetic cluster $S$, measured in the $jth$ magnitude 
-         band of the $m$ distinct bands available Gaia eDR3: G, GBP and GRP in this work).
+         band of the $m$ distinct bands available Gaia eDR3: G, GBP and GRP in this work.
+         
+         With the closest synthetic star determined, we check if it corresponds to a binary. 
+         If it is, we mark the observed star as a binary and assign to it the corresponding 
+         primary and secondary masses, since for the synthetic cluster those are known. Else,
+         we assign the mass of the nearest synthetic cluster star to the observed star. The process 
+         is repeated a large number of times, each time with a distinct synthetic cluster generated 
+         by varying individual stars. The final mass of the observed stars and their companions 
+         are adopted as the median of the respective sample of masses determined. The errors are 
+         obtained by the standard deviation of the estimates in each case. We note here that, 
+         since the method determines masses based on the minimization of Euclidean distances 
+         in magnitude space, the distribution of binary system companion masses is adopted 
+         for the synthetic cluster solely to efficiently sample the CMD region where binaries 
+         are likely to be located. The actual distribution of mass fractions in binary systems 
+         for a given observed cluster is determined a posteriori from the estimated stellar masses. 
+         The procedure is illustrated in Fig. \ref{fig:sobreposicoes} where we have generated a 
+         simulated open cluster with 50 member stars overlaid on a synthetic cluster generated 
+         with the same referenced parameters with 10000 synthetic stars.
+
+        To validate the stellar mass estimation method, a grid of synthetic clusters was generated 
+        with log(age) varying from 6.6 to 9.5; reddening from 0.5 to 3.0 magnitudes; distances 
+        from 1 to 5 kpc and with 300 observed stars, 50\% of which are binary systems. We then 
+        compared the results of our mass estimation procedure to the input masses of the generated 
+        grid. In Fig. \ref{fig:mass_error} we show an example of the validation for a simulated 
+        cluster of log(age) = 8.5, distance = 1.0 kpc, and $A_v$ = 1.0 mag. We can see that 
+        results are in good agreement with the input synthetic masses, with binary systems showing 
+        larger differences as expected.
+
+
+    The individual mass estimates also vary with respect to cluster ages and distances, 
+    as shown in Fig. \ref{fig:indMass_error}. As expected, the relative errors are 
+    worst for binaries and increase with age and distance, also with increasing spread. 
+    The behaviour is expected as the photometric errors affect proportionally more 
+    the clusters at higher distances. Young clusters also show larger uncertainties 
+    due to their more undefined turn-off region in colour-magnitude space.
+         
          ''')
+         
+st.subheader('We are updating this page...')
 
