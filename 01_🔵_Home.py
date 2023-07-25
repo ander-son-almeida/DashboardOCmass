@@ -22,21 +22,22 @@ st.write('Universidade Federal de Itajubá')
 st.write('''
          
          
-With the publication of the Gaia catalogue and improvements in methods to determine the existence and fundamental 
-parameters of open clusters, the study of these objects has undergone major advances in recent years, with data 
-being obtained on larger scales and with better precision. However, important parameters such as the total masses 
-of these objects, although being studied mostly in some isolated cases, have not been addressed in large homogeneous
- samples and taking into account details such as binary fractions. Consequently, relevant aspects such as the existence 
- of mass segregation were not adequately studied. Within this context, in this work, we introduce a new method to 
- determine individual stellar masses, including an estimation for the ones in binary systems. This method allows us 
- to study the total mass of open clusters, as well as to study details of the binary star populations through their 
- mass functions. We validate the method and its efficiency and characterize uncertainties using a grid of synthetic 
- clusters with predetermined parameters. We highlight the application of the method to the Pleiades cluster, showing 
- that the results obtained agree with the current consensus in the literature as well as recent Gaia data. We then 
- applied the procedure to a sample of 773 open clusters with fundamental parameters determined using GAIA Early Data 
- Release 3 (eDR3) data, obtaining their total masses. Subsequently, we investigated the relation between the total 
- masses and other fundamental parameters. Among the results, we found no significant evidence that clusters lose and 
- segregate mass with age. 
+The publication of the Gaia catalogue and improvements in methods to determine memberships and 
+fundamental parameters of open clusters has led to major advances in recent years. However, important 
+parameters such as the masses of these objects, although being studied mostly in some isolated cases, 
+have not been addressed in large homogeneous samples based on Gaia data, taking into account 
+details such as binary fractions. Consequently, relevant aspects such as the existence of mass segregation 
+were not adequately studied. Within this context, in this work, we introduce a new method to determine 
+individual stellar masses, including an estimation for the ones in binary systems. This method allows us 
+to study the mass of open clusters, as well as the mass functions of the binary star populations. 
+We validate the method and its efficiency and characterize uncertainties using a grid of synthetic 
+clusters with predetermined parameters. We highlight the application of the method to the Pleiades cluster, 
+showing that the results obtained agree with the current consensus in the literature as well as recent 
+Gaia data. We then applied the procedure to a sample of 773 open clusters with fundamental 
+parameters determined using Gaia Early Data Release 3 (eDR3) data, obtaining their masses. 
+Subsequently, we investigated the relation between the masses and other fundamental parameters
+ of the clusters. Among the results, we found no significant evidence that clusters in our sample 
+ lose and segregate mass with age. 
 
 
 Therefore, this Dashaboard was developed with the objective of disseminating the results obtained in our research, 
