@@ -119,9 +119,7 @@ with io.BytesIO() as buffer:
         file_name = '{}.npy'.format(cluster_name)
     ) 
 
-st.sidebar.info('Download the .npy file of the open cluster. In it, you will \n'
-    'find the values of individual masses determined by us, \n'
-   'along with other Gaia parameters.')
+st.sidebar.info('The .npy file download includes the individual and binary star masses and Gaia parameters.')
 
 
 # bar with fundamental parameters
