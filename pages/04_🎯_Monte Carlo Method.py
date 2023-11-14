@@ -224,10 +224,13 @@ with st.form("my_form"):
         with results:
             with col10:
                 
-                st.write("$M_{{total}} (Integrated) = {} \pm {}~M_{{\odot}}$".format(total_mass_integrated, total_mass_integrated*0.20))
-                st.write("$M_{{total}} (Deitaled) = {} \pm {}~M_{{\odot}}$".format(total_mass_detailed, total_mass_detailed*0.20))
+                gif.empty()
+                load_text.empty()
+                
+                st.write("$M_{{total}} (Integrated) = {} \pm {}~M_{{\odot}}$".format(total_mass_integrated, int(total_mass_integrated*0.20)))
+                st.write("$M_{{total}} (Deitaled) = {} \pm {}~M_{{\odot}}$".format(total_mass_detailed, int(total_mass_detailed*0.20)))
                 st.write("$Bin. Fraction = {}$".format(np.around(bin_fraction,decimals=2)))
-                st.write("$Seg. Ratio = {}$".format(np.around(mass_ratio, decimals=2)))
+                #st.write("$Seg. Ratio = {}$".format(np.around(mass_ratio, decimals=2)))
                 # st.sidebar.subheader("$KS Test = {} \pm {}$".format(np.around(KSTest[0], decimals=3), np.around(KSTest_pval[0], decimals=3)))
                 
             with col11:
