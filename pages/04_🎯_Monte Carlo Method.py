@@ -85,6 +85,9 @@ with st.form("my_form"):
     submitted = st.form_submit_button("Submit")
     
     if submitted:
+        
+        parameters_and_upload.empty()
+        
         ###############################################################################
         # Get Monte Carlo Method
         
