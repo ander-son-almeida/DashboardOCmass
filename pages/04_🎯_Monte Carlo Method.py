@@ -44,8 +44,8 @@ with st.form("my_form"):
           Av = st.number_input("Extinction:", value=0.349)
           
         with col6:
-            st.subheader('Choose a file with photometric data', divider='blue')
-            file = st.file_uploader('Choose a file', type=['npy', 'csv'])
+            st.subheader('Uploading your memberships file', divider='blue')
+            file = st.file_uploader('Choose a file with photometric data', type=['npy', 'csv'])
             if file is not None:
                 # checking the file extension
                 file_extension = file.name.split(".")[-1]
@@ -77,6 +77,7 @@ with st.form("my_form"):
                     st.warning("Unsupported file format. Please choose a .npy or .csv file.")
                     
         with col7:
+            st.subheader('Attention', divider='blue')
             st.write('🔹 lalalalalalalala')
             st.write('🔹 lalalalalllalala')
             st.write('🔹 lalalalalllalala')
