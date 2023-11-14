@@ -52,7 +52,7 @@ with st.form("my_form"):
             
                 if file_extension == "npy":
                     data_obs = np.load(file)
-                    st.info("Sucess upload file npy!")
+                    # st.info("Sucess upload file npy!")
                     # st.write(data_obs)
             
                 elif file_extension == "csv":
@@ -86,8 +86,6 @@ with st.form("my_form"):
     
     if submitted:
         
-        parameters_and_upload.empty()
-        
         ###############################################################################
         # Get Monte Carlo Method
         
@@ -100,19 +98,17 @@ with st.form("my_form"):
             with col9:
                 st.write('wait, determining the masses...')
                 
-
+        parameters_and_upload.empty()
+        loading.empty()
         (mass, er_mass, comp_mass, er_comp_mass, bin_prob) = get_star_mass(age, dist, 
                                                                            Av, FeH, 
                                                                            data_obs, bin_frac=0.5, 
                                                                            nruns=200, nstars=10000, 
                                                                            seed=42)
         
-        
-        st.write("Resultado massas")
-
-    # loading.empty()
 
 
+if mass:
     # Obtendo a isocrona bruta do grid, dada uma idade e metalicidade
     grid_iso = get_iso_from_grid(age,(10.**FeH)*0.0152,filters,refMag, nointerp=False)
      
@@ -141,7 +137,7 @@ with st.form("my_form"):
                       xaxis_range=[-1,6])
     
     st.plotly_chart(fig01, use_container_width=False)
-    
+        
     
 
 
