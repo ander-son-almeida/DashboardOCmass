@@ -37,13 +37,26 @@ with st.form("my_form"):
     with parameters_and_upload:
         
         with col5:
-          st.subheader('Enter the fundamental parameters', divider='blue')
-          age = st.number_input("log(age):", value=8.005)
-          dist = st.number_input("Distance (kpc):", value=135/1000)
-          FeH = st.number_input("Metallicity:", value=-0.017)
-          Av = st.number_input("Extinction:", value=0.349)
-          
+            st.subheader('Attention', divider='blue')
+            st.write('🔹 The Monte Carlo mass determination method only works with Gaia eDR3 or DR3 photometry;')
+            st.write('🔹 This app/code supports two types of files: .npy or .csv. Make sure your memberships file'
+                 ' contains the columns "Gmag", "BPmag" and "RPmag" - written this way.')
+        
+            st.write('🔹 The calculation of masses is not immediate. The greater the number of members in the open '
+                 'cluster, the longer it will take to determine individual masses.')
+            
+            # st.write('🔹 lalalalalllalala')
+
+            # st.write('🔹 lalalalalllalala')
+            
         with col6:
+            st.subheader('Enter the fundamental parameters', divider='blue')
+            age = st.number_input("log(age):", value=8.005)
+            dist = st.number_input("Distance (kpc):", value=135/1000)
+            FeH = st.number_input("Metallicity:", value=-0.017)
+            Av = st.number_input("Extinction:", value=0.349)
+
+        with col7:
             st.subheader('Uploading your memberships file', divider='blue')
             file = st.file_uploader('Choose a file with photometric data', type=['npy', 'csv'])
             if file is not None:
@@ -76,14 +89,7 @@ with st.form("my_form"):
                 else:
                     st.warning("Unsupported file format. Please choose a .npy or .csv file.")
                     
-        with col7:
-            st.subheader('Attention', divider='blue')
-            st.write('🔹 lalalalalalalala')
-            st.write('🔹 lalalalalllalala')
-            st.write('🔹 lalalalalllalala')
-            st.write('🔹 lalalalalllalala')
-            st.write('🔹 lalalalalllalala')
-    
+            
     submitted = st.form_submit_button("Submit", use_container_width=True)
     
     if submitted:
