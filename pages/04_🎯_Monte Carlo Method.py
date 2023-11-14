@@ -217,11 +217,11 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
             
         #######################################################################
         #SAVE RESULTS
-        mass = np.full(data_obs.shape[0],mass, dtype=[('mass', float)])
-        er_mass = np.full(data_obs.shape[0], er_mass, dtype=[('er_mass', float)])
-        comp_mass = np.full(data_obs.shape[0], comp_mass, dtype=[('comp_mass', float)])
-        er_comp_mass = np.full(data_obs.shape[0], er_comp_mass, dtype=[('er_comp_mass', float)])
-        members_ship = rfn.merge_arrays((data_obs, mass, er_mass, comp_mass, er_comp_mass), flatten=True)
+        mass0 = np.full(data_obs.shape[0], mass, dtype=[('mass', float)])
+        er_mass0 = np.full(data_obs.shape[0], er_mass, dtype=[('er_mass', float)])
+        comp_mass0 = np.full(data_obs.shape[0], comp_mass, dtype=[('comp_mass', float)])
+        er_comp_mass0 = np.full(data_obs.shape[0], er_comp_mass, dtype=[('er_comp_mass', float)])
+        members_ship = rfn.merge_arrays((data_obs, mass0, er_mass0, comp_mass0, er_comp_mass0), flatten=True)
         
     
     
@@ -235,9 +235,7 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
                 st.write("$M_{{total}} (Integrated) = {} \pm {}~M_{{\odot}}$".format(total_mass_integrated, int(total_mass_integrated*0.20)))
                 st.write("$M_{{total}} (Deitaled) = {} \pm {}~M_{{\odot}}$".format(total_mass_detailed, int(total_mass_detailed*0.20)))
                 st.write("$Bin. Fraction = {}$".format(np.around(bin_fraction,decimals=2)))
-                #st.write("$Seg. Ratio = {}$".format(np.around(mass_ratio, decimals=2)))
-                # st.sidebar.subheader("$KS Test = {} \pm {}$".format(np.around(KSTest[0], decimals=3), np.around(KSTest_pval[0], decimals=3)))
-                
+
                 # Create an in-memory buffer
                 with io.BytesIO() as buffer:
                     # Write array to buffer
