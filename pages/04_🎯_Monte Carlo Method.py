@@ -81,13 +81,18 @@ with st.form("my_form"):
             st.write('🔹 lalalalalllalala')
             st.write('🔹 lalalalalllalala')
             st.write('🔹 lalalalalllalala')
-                
+    
+    ###############################################################################
+    # Get Monte Carlo Method
+    (mass, er_mass, comp_mass, er_comp_mass, bin_prob) = get_star_mass(age, dist, 
+                                                                       Av, FeH, 
+                                                                       data_obs, bin_frac=0.5, 
+                                                                       nruns=200, nstars=10000, 
+                                                                       seed=42)
+
     submitted = st.form_submit_button("Submit")
     
     if submitted:
-        
-        ###############################################################################
-        # Get Monte Carlo Method
         
         loading = st.container()
         col8, col9 = st.columns(2)
@@ -98,46 +103,36 @@ with st.form("my_form"):
             with col9:
                 st.write('wait, determining the masses...')
                 
-        parameters_and_upload.empty()
-        loading.empty()
-        (mass, er_mass, comp_mass, er_comp_mass, bin_prob) = get_star_mass(age, dist, 
-                                                                           Av, FeH, 
-                                                                           data_obs, bin_frac=0.5, 
-                                                                           nruns=200, nstars=10000, 
-                                                                           seed=42)
+                
+        # Obtendo a isocrona bruta do grid, dada uma idade e metalicidade
+        grid_iso = get_iso_from_grid(age,(10.**FeH)*0.0152,filters,refMag, nointerp=False)
+         
+        # Faz uma isocrona - levando em consideração os parametros observacionais
+        fit_iso = make_obs_iso(filters, grid_iso, dist, Av, gaia_ext = True) 
         
-
-
-if mass:
-    # Obtendo a isocrona bruta do grid, dada uma idade e metalicidade
-    grid_iso = get_iso_from_grid(age,(10.**FeH)*0.0152,filters,refMag, nointerp=False)
-     
-    # Faz uma isocrona - levando em consideração os parametros observacionais
-    fit_iso = make_obs_iso(filters, grid_iso, dist, Av, gaia_ext = True) 
-    
-    
-    # CMD com massa
-    cmd_scatter = pd.DataFrame({'BPmag - RPmag': data_obs['BPmag'] - data_obs['RPmag'], 
-                                'Gmag': data_obs['Gmag'], 
-                                'Mass': mass})
-    
-    cmd_iso = pd.DataFrame({'G_BPmag - G_RPmag': fit_iso['G_BPmag']-fit_iso['G_RPmag'], 
-                            'Gmag': fit_iso['Gmag']})
-    
-    fig1 = px.scatter(cmd_scatter, x = 'BPmag - RPmag', y = 'Gmag',
-                      opacity=0.6, color= 'Mass', color_continuous_scale = 'jet_r', size=mass)
-    
-    fig2 = px.line(cmd_iso, x = 'G_BPmag - G_RPmag', y = 'Gmag')
-    
-    fig01 = go.Figure(data = fig1.data + fig2.data).update_layout(coloraxis=fig1.layout.coloraxis)
-    fig01.update_layout(xaxis_title= 'G_BP - G_RP (mag)',
-                      yaxis_title="G (mag)",
-                      coloraxis_colorbar=dict(title="M☉"),
-                      yaxis_range=[22,2],
-                      xaxis_range=[-1,6])
-    
-    st.plotly_chart(fig01, use_container_width=False)
         
+        # CMD com massa
+        cmd_scatter = pd.DataFrame({'BPmag - RPmag': data_obs['BPmag'] - data_obs['RPmag'], 
+                                    'Gmag': data_obs['Gmag'], 
+                                    'Mass': mass})
+        
+        cmd_iso = pd.DataFrame({'G_BPmag - G_RPmag': fit_iso['G_BPmag']-fit_iso['G_RPmag'], 
+                                'Gmag': fit_iso['Gmag']})
+        
+        fig1 = px.scatter(cmd_scatter, x = 'BPmag - RPmag', y = 'Gmag',
+                          opacity=0.6, color= 'Mass', color_continuous_scale = 'jet_r', size=mass)
+        
+        fig2 = px.line(cmd_iso, x = 'G_BPmag - G_RPmag', y = 'Gmag')
+        
+        fig01 = go.Figure(data = fig1.data + fig2.data).update_layout(coloraxis=fig1.layout.coloraxis)
+        fig01.update_layout(xaxis_title= 'G_BP - G_RP (mag)',
+                          yaxis_title="G (mag)",
+                          coloraxis_colorbar=dict(title="M☉"),
+                          yaxis_range=[22,2],
+                          xaxis_range=[-1,6])
+        
+        st.plotly_chart(fig01, use_container_width=False)
+            
     
 
 
