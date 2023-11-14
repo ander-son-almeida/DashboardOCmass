@@ -25,9 +25,9 @@ st.set_page_config(page_title="Monte Carlo Method",layout='wide', page_icon='ðŸŽ
 ###############################################################################
 #upload file
 
-file = st.file_uploader('Choose a file', type=['npy', 'csv'])
-
 with st.form("my_form"):
+
+    file = st.file_uploader('Choose a file', type=['npy', 'csv'])
 
     if file is not None:
         
