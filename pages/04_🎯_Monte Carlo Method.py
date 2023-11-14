@@ -52,7 +52,6 @@ with st.form("my_form"):
             
                 if file_extension == "npy":
                     data_obs = np.load(file)
-                    # st.info("Sucess upload file npy!")
                     # st.write(data_obs)
             
                 elif file_extension == "csv":
@@ -71,7 +70,9 @@ with st.form("my_form"):
                         except pd.errors.ParserError:
                             # Se a leitura falhar, continua para o próximo delimitador
                             pass
-            
+                    
+                    st.info("Sucess upload file!")
+                    
                 else:
                     st.warning("Unsupported file format. Please choose a .npy or .csv file.")
                     
