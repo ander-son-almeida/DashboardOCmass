@@ -105,7 +105,11 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
         # loading = st.container()
         # col8, col9 = st.columns(2)
         
-        gif = st.image("https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGx4emUwc3FoYXVuM24yNTJzMWtvd3QzNzJpZmplNmEzMmRwaTd0dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RgzryV9nRCMHPVVXPV/giphy.gif", width=40)
+        _left, mid, _right = st.columns(3)
+        with mid:
+           gif = st.image("https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGx4emUwc3FoYXVuM24yNTJzMWtvd3QzNzJpZmplNmEzMmRwaTd0dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RgzryV9nRCMHPVVXPV/giphy.gif", width=60)
+        
+        
         load_text = st.markdown("<h5 style='text-align: center; color: #034687;'>Please wait, calculating masses...</h5>", unsafe_allow_html=True)
         
         # with loading:
