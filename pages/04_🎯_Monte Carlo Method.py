@@ -66,13 +66,15 @@ dist = 135/1000
 FeH = -0.017 
 Av = 0.349
 
-(mass, er_mass, comp_mass, er_comp_mass, bin_prob) = get_star_mass(age, dist, 
-                                                                   Av, FeH, 
-                                                                   data_obs, bin_frac=0.5, 
-                                                                   nruns=200, nstars=10000, 
-                                                                   seed=42)
-st.write("Resultado massas")
-st.write(mass)
+if data_obs:
+    
+    (mass, er_mass, comp_mass, er_comp_mass, bin_prob) = get_star_mass(age, dist, 
+                                                                       Av, FeH, 
+                                                                       data_obs, bin_frac=0.5, 
+                                                                       nruns=200, nstars=10000, 
+                                                                       seed=42)
+    st.write("Resultado massas")
+    st.write(mass)
 
 
 

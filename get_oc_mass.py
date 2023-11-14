@@ -13,6 +13,7 @@ import numpy as np
 from oc_tools_padova_edr3 import *
 import os
 import concurrent.futures
+import streamlit as st
 
 # read isochrones
 mod_grid, age_grid, z_grid = load_mod_grid()
@@ -51,9 +52,13 @@ def calculate_masses(age, dist, av, feh, obs, bin_frac, nruns, nstars):
     e_c_mass = []
     is_bin = []
 
+    progress_bar = st.empty()
     for j in range(obs.shape[0]):
         aux = np.sum((obs_mag[j,:]-mod_mag)**2,axis=1)
         ind.append(np.argmin(aux))
+        
+        # update progress bar
+        progress_bar.progress((j+1) / obs.shape[0])
             
     masses = mod_cluster['Mass'][ind]
     comp_mass = mod_cluster['comp_mass'][ind]
