@@ -18,6 +18,10 @@ from get_oc_mass import *
 
 
 #load grif isocrones
+# read isochrones
+mod_grid, age_grid, z_grid = load_mod_grid()
+filters = ['Gmag','G_BPmag','G_RPmag']
+refMag = 'Gmag' 
 iso = np.load('full_isoc_Gaia_eDR3_CMD34.npy')
 
 st.set_page_config(page_title="Monte Carlo Method",layout='wide', page_icon='🎯')
@@ -79,7 +83,7 @@ with st.form("my_form"):
             with col8:
                 st.image("https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGx4emUwc3FoYXVuM24yNTJzMWtvd3QzNzJpZmplNmEzMmRwaTd0dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RgzryV9nRCMHPVVXPV/giphy.gif", width=40)
             with col9:
-                st.write('determining masses...')
+                st.write('wait, determining the masses...')
                 
 
         (mass, er_mass, comp_mass, er_comp_mass, bin_prob) = get_star_mass(age, dist, 
@@ -88,11 +92,41 @@ with st.form("my_form"):
                                                                            nruns=200, nstars=10000, 
                                                                            seed=42)
         
-        loading.empty()
+        
         st.write("Resultado massas")
         st.write(mass)
 
+    loading.empty()
 
+
+    # Obtendo a isocrona bruta do grid, dada uma idade e metalicidade
+    grid_iso = get_iso_from_grid(age,(10.**FeH)*0.0152,filters,refMag, nointerp=False)
+     
+    # Faz uma isocrona - levando em consideração os parametros observacionais
+    fit_iso = make_obs_iso(filters, grid_iso, dist, Av, gaia_ext = True) 
+    
+    
+    # CMD com massa
+    cmd_scatter = pd.DataFrame({'G_BPmag - G_RPmag': data_obs['G_BPmag'] - data_obs['G_RPmag'], 
+                                'Gmag': data_obs['Gmag'], 
+                                'Mass': mass})
+    
+    cmd_iso = pd.DataFrame({'G_BPmag - G_RPmag': fit_iso['G_BPmag']-fit_iso['G_RPmag'], 
+                            'Gmag': fit_iso['Gmag']})
+    
+    fig1 = px.scatter(cmd_scatter, x = 'G_BPmag - G_RPmag', y = 'Gmag',
+                      opacity=0.6, color= 'Mass', color_continuous_scale = 'jet_r', size=mass)
+    
+    fig2 = px.line(cmd_iso, x = 'G_BPmag - G_RPmag', y = 'Gmag')
+    
+    fig01 = go.Figure(data = fig1.data + fig2.data).update_layout(coloraxis=fig1.layout.coloraxis)
+    fig01.update_layout(xaxis_title= 'G_BP - G_RP (mag)',
+                      yaxis_title="G (mag)",
+                      coloraxis_colorbar=dict(title="M☉"),
+                      yaxis_range=[22,2],
+                      xaxis_range=[-1,6])
+    
+    
 
 
 # coluna = st.sidebar
