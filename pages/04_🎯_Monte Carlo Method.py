@@ -38,19 +38,25 @@ with st.form("my_form"):
         
         with col5:
             st.subheader('Attention', divider='blue')
+            
             st.write('🔹 The Monte Carlo mass determination method only works with Gaia eDR3 or DR3 photometry;')
+            
             st.write('🔹 This app/code supports two types of files: .npy or .csv. Make sure your memberships file'
                  ' contains the columns "Gmag", "BPmag" and "RPmag" - written this way.')
+            
+            st.write('🔹 We provide an example file to help you interact with this app: testete')
         
             st.write('🔹 The calculation of masses is not immediate. The greater the number of members in the open '
                  'cluster, the longer it will take to determine individual masses.')
             
-            # st.write('🔹 lalalalalllalala')
+            
 
             # st.write('🔹 lalalalalllalala')
             
         with col6:
-            st.subheader('Enter the fundamental parameters', divider='blue')
+            st.subheader('Fundamental parameters', divider='blue', help='In this step you must enter the fundamental parameters'
+                                                                         'such as age, distance, metallicity and extinction of '
+                                                                         'your open cluster.')
             age = st.number_input("log(age):", value=8.005)
             dist = st.number_input("Distance (kpc):", value=135/1000)
             FeH = st.number_input("Metallicity:", value=-0.017)
