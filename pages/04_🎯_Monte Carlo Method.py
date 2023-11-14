@@ -14,12 +14,14 @@ import numpy as np
 import time
 from oc_tools_padova_edr3 import *
 from io import StringIO
+from get_oc_mass import *
 
 #load grif isocrones
 iso = np.load('full_isoc_Gaia_eDR3_CMD34.npy')
 
 st.set_page_config(page_title="Monte Carlo Method",layout='wide', page_icon='🎯')
 
+###############################################################################
 #upload file
 
 file = st.file_uploader('Choose a file', type=['npy', 'csv'])
@@ -31,13 +33,14 @@ if file is not None:
 
     if file_extension == "npy":
         data_obs = np.load(file)
-        st.write("Conteúdo do arquivo .npy:")
+        st.write("File content .npy:")
         st.write(data_obs)
 
     elif file_extension == "csv":
-        st.write("Arquivo .csv detectado. Testando diferentes delimitadores:")
         
-        # Lista de possíveis delimitadores a serem testados
+        st.write("csv file detected. Testing different delimiters:")
+        
+        # list delimiters
         delimiters = [",", ";", "\t", "|"]
 
         for delimiter in delimiters:
@@ -45,15 +48,33 @@ if file is not None:
                 # Tenta ler o arquivo usando o delimitador atual
                 data_obs = pd.read_csv(file, delimiter=delimiter)
                 st.write(f"Delimitador testado: '{delimiter}'")
-                st.write("Conteúdo do arquivo .csv:")
+                st.write("File content .csv:")
                 st.write(data_obs)
-                break  # Se bem-sucedido, interrompe o loop
+                break  
             except pd.errors.ParserError:
                 # Se a leitura falhar, continua para o próximo delimitador
                 pass
 
     else:
-            st.warning("Formato de arquivo não suportado. Por favor, escolha um arquivo .npy ou .csv.")
+            st.warning("Unsupported file format. Please choose a .npy or .csv file.")
+            
+###############################################################################
+# Get Monte Carlo Method
+
+age = 8.005
+dist = 135/1000
+FeH = -0.017 
+Av = 0.349
+
+(mass, er_mass, comp_mass, er_comp_mass, bin_prob) = get_star_mass(age, dist, 
+                                                                   Av, FeH, 
+                                                                   data_obs, bin_frac=0.5, 
+                                                                   nruns=200, nstars=10000, 
+                                                                   seed=42)
+st.write("Resultado massas")
+st.write(mass)
+
+
 
 
 # coluna = st.sidebar
