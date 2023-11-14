@@ -104,12 +104,13 @@ with st.form("my_form"):
         loading = st.container()
         col8, col9 = st.columns(2)
         
+        load_text = st.markdown("<h4 style='text-align: center; color: #034687;'>Some title</h4>", unsafe_allow_html=True)
+        
         with loading:
             with col8:
                 gif = st.image("https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGx4emUwc3FoYXVuM24yNTJzMWtvd3QzNzJpZmplNmEzMmRwaTd0dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RgzryV9nRCMHPVVXPV/giphy.gif", width=40)
             with col9:
-                load_text = st.markdown("<h4 style='text-align: center; color: #034687;'>Some title</h4>", unsafe_allow_html=True)
-                # load_text = st.subheader('wait, determining the masses...')
+                space = st.empt()
         
         ###############################################################################
         # Get Monte Carlo Method
