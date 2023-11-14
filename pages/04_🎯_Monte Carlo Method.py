@@ -114,7 +114,7 @@ with st.form("my_form"):
     cmd_iso = pd.DataFrame({'G_BPmag - G_RPmag': fit_iso['G_BPmag']-fit_iso['G_RPmag'], 
                             'Gmag': fit_iso['Gmag']})
     
-    fig1 = px.scatter(cmd_scatter, x = 'G_BPmag - G_RPmag', y = 'Gmag',
+    fig1 = px.scatter(cmd_scatter, x = 'BPmag - RPmag', y = 'Gmag',
                       opacity=0.6, color= 'Mass', color_continuous_scale = 'jet_r', size=mass)
     
     fig2 = px.line(cmd_iso, x = 'G_BPmag - G_RPmag', y = 'Gmag')
