@@ -31,10 +31,11 @@ st.set_page_config(page_title="Monte Carlo Method",layout='wide', page_icon='ðŸŽ
 
 ###############################################################################
 #upload file
+parameters_and_upload = st.container()
 
-with st.form("my_form"):
+# with st.form("my_form"):
+with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):	
     
-    parameters_and_upload = st.container()
     col5, col6, col7 = st.columns(3)
     
     with parameters_and_upload:
@@ -265,7 +266,7 @@ with st.form("my_form"):
                                   yaxis_range=[22,2],
                                   xaxis_range=[-1,6])
                 
-                loading.empty()
+                # loading.empty()
                 st.plotly_chart(fig01, use_container_width=True)
         
         
