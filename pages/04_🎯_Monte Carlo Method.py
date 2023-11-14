@@ -94,7 +94,6 @@ with st.form("my_form"):
         
         
         st.write("Resultado massas")
-        st.write(data_obs)
 
     # loading.empty()
 
