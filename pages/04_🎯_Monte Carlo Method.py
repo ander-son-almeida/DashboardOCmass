@@ -87,14 +87,6 @@ with st.form("my_form"):
     
     if submitted:
         
-        ###############################################################################
-        # Get Monte Carlo Method
-        (mass, er_mass, comp_mass, er_comp_mass, bin_prob) = get_star_mass(age, dist, 
-                                                                           Av, FeH, 
-                                                                           data_obs, bin_frac=0.5, 
-                                                                           nruns=200, nstars=10000, 
-                                                                           seed=42)
-        
         loading = st.container()
         col8, col9 = st.columns(2)
         
@@ -103,8 +95,16 @@ with st.form("my_form"):
                 st.image("https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGx4emUwc3FoYXVuM24yNTJzMWtvd3QzNzJpZmplNmEzMmRwaTd0dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RgzryV9nRCMHPVVXPV/giphy.gif", width=40)
             with col9:
                 st.write('wait, determining the masses...')
-                
-                
+        
+        ###############################################################################
+        # Get Monte Carlo Method
+        (mass, er_mass, comp_mass, er_comp_mass, bin_prob) = get_star_mass(age, dist, 
+                                                                           Av, FeH, 
+                                                                           data_obs, bin_frac=0.5, 
+                                                                           nruns=200, nstars=10000, 
+                                                                           seed=42)
+        
+
         # Obtendo a isocrona bruta do grid, dada uma idade e metalicidade
         grid_iso = get_iso_from_grid(age,(10.**FeH)*0.0152,filters,refMag, nointerp=False)
          
