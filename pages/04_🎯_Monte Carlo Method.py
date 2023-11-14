@@ -222,8 +222,6 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
         comp_mass0 = np.full(data_obs.shape[0], comp_mass, dtype=[('comp_mass', float)])
         er_comp_mass0 = np.full(data_obs.shape[0], er_comp_mass, dtype=[('er_comp_mass', float)])
         members_ship = rfn.merge_arrays((data_obs, mass, er_mass, comp_mass, er_comp_mass), flatten=True)
-        
-    
     
         col10, col11 = st.columns(2)
         results = st.container()
