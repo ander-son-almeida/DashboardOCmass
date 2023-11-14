@@ -16,6 +16,8 @@ from oc_tools_padova_edr3 import *
 from io import StringIO
 # from get_oc_mass import *
 from stqdm import stqdm
+import os
+import concurrent.futures
 
 #load grif isocrones
 iso = np.load('full_isoc_Gaia_eDR3_CMD34.npy')
