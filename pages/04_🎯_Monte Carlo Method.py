@@ -82,17 +82,17 @@ with st.form("my_form"):
             st.write('🔹 lalalalalllalala')
             st.write('🔹 lalalalalllalala')
     
-    ###############################################################################
-    # Get Monte Carlo Method
-    (mass, er_mass, comp_mass, er_comp_mass, bin_prob) = get_star_mass(age, dist, 
-                                                                       Av, FeH, 
-                                                                       data_obs, bin_frac=0.5, 
-                                                                       nruns=200, nstars=10000, 
-                                                                       seed=42)
-
     submitted = st.form_submit_button("Submit")
     
     if submitted:
+        
+        ###############################################################################
+        # Get Monte Carlo Method
+        (mass, er_mass, comp_mass, er_comp_mass, bin_prob) = get_star_mass(age, dist, 
+                                                                           Av, FeH, 
+                                                                           data_obs, bin_frac=0.5, 
+                                                                           nruns=200, nstars=10000, 
+                                                                           seed=42)
         
         loading = st.container()
         col8, col9 = st.columns(2)
