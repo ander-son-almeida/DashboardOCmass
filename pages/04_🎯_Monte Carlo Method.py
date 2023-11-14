@@ -72,17 +72,22 @@ with st.form("my_form"):
         FeH = -0.017 
         Av = 0.349
         
-        # if data_obs:
+        loading = st.container()
+        col8, col9 = st.columns(2)
         
-        loading = st.image("https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGx4emUwc3FoYXVuM24yNTJzMWtvd3QzNzJpZmplNmEzMmRwaTd0dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RgzryV9nRCMHPVVXPV/giphy.gif", width=40)
-        st.write('determining masses...', loading)
-        
-        #st.markdown("![Alt Text](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGx4emUwc3FoYXVuM24yNTJzMWtvd3QzNzJpZmplNmEzMmRwaTd0dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RgzryV9nRCMHPVVXPV/giphy.gif)")
+        with loading:
+            with col8:
+                st.write('determining masses...')
+            with col9:
+                st.image("https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGx4emUwc3FoYXVuM24yNTJzMWtvd3QzNzJpZmplNmEzMmRwaTd0dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RgzryV9nRCMHPVVXPV/giphy.gif", width=40)
+
         (mass, er_mass, comp_mass, er_comp_mass, bin_prob) = get_star_mass(age, dist, 
                                                                            Av, FeH, 
                                                                            data_obs, bin_frac=0.5, 
                                                                            nruns=200, nstars=10000, 
                                                                            seed=42)
+        
+        loading.empty()
         st.write("Resultado massas")
         st.write(mass)
 
