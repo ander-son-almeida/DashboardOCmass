@@ -83,7 +83,7 @@ with st.form("my_form"):
             st.write('🔹 lalalalalllalala')
             st.write('🔹 lalalalalllalala')
     
-    submitted = st.form_submit_button("Submit")
+    submitted = st.form_submit_button("Submit", use_container_width=True)
     
     if submitted:
         
