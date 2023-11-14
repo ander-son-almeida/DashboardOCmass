@@ -56,8 +56,6 @@ def calculate_masses(age, dist, av, feh, obs, bin_frac, nruns, nstars):
         aux = np.sum((obs_mag[j,:]-mod_mag)**2,axis=1)
         ind.append(np.argmin(aux))
         
-        print(j)
-        
         
     masses = mod_cluster['Mass'][ind]
     comp_mass = mod_cluster['comp_mass'][ind]
