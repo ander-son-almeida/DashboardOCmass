@@ -6,14 +6,18 @@ Created on Sun May 14 22:55:46 2023
 """
 
 import numpy as np
-import matplotlib.pyplot as plt
-from functions.oc_tools_padova_edr3 import *
-from scipy import stats
-import multiprocessing
-from functions.get_oc_mass import *
+# import matplotlib.pyplot as plt
+# from functions.oc_tools_padova_edr3 import *
+# from scipy import stats
+# import multiprocessing
+from oc_tools_padova_edr3 import *
 import os
 import concurrent.futures
 
+# read isochrones
+mod_grid, age_grid, z_grid = load_mod_grid()
+filters = ['Gmag','G_BPmag','G_RPmag']
+refMag = 'Gmag' 
 
 def calculate_masses(age, dist, av, feh, obs, bin_frac, nruns, nstars):
     
@@ -57,7 +61,7 @@ def calculate_masses(age, dist, av, feh, obs, bin_frac, nruns, nstars):
 
     return masses, comp_mass, is_bin
 
-def get_star_mass_parallel(age, dist, av, feh, obs, bin_frac, nruns, nstars,
+def get_star_mass(age, dist, av, feh, obs, bin_frac, nruns, nstars,
                            seed=None, n_workers=None):
 
     if n_workers is None:
