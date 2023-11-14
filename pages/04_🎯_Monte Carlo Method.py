@@ -145,6 +145,7 @@ with st.form("my_form"):
                           yaxis_range=[22,2],
                           xaxis_range=[-1,6])
         
+        loading.empty()
         st.plotly_chart(fig01, use_container_width=False)
             
     
