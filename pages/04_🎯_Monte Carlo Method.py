@@ -17,6 +17,7 @@ from oc_tools_padova_edr3 import *
 from io import StringIO
 from get_oc_mass import *
 from scipy.optimize import curve_fit
+import statistics as sts
 
 
 #load grif isocrones
@@ -142,7 +143,7 @@ with st.form("my_form"):
 
         mass_bin_ctr = mass_bins[:-1] + np.diff(mass_bins)/2
         mass_bin_sz = np.diff(mass_bin_ctr)
-        mass_bin_sz = st.mode(mass_bin_sz)
+        mass_bin_sz = sts.mode(mass_bin_sz)
 
         mass_bin_ctr = mass_bin_ctr[mass_cnt >= 0]
         mass_cnt = mass_cnt[mass_cnt >= 0]
