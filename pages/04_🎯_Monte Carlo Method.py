@@ -94,9 +94,9 @@ with st.form("my_form"):
         
         
         st.write("Resultado massas")
-        st.write(mass)
+        st.write(data_obs)
 
-    loading.empty()
+    # loading.empty()
 
 
     # Obtendo a isocrona bruta do grid, dada uma idade e metalicidade
