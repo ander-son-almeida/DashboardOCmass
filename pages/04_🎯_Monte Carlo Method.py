@@ -181,7 +181,7 @@ with st.form("my_form"):
 
 
         ###############################################################################
-        mass_intergrated = np.concatenate((teste_mass,teste_comp_mass), axis=0)
+        mass_intergrated = np.concatenate((mass,comp_mass), axis=0)
         alpha_high_int, alpha_low_int, Mc_int, offset_int, alpha_high_er_int, \
             alpha_low_er_int, Mc_er_int, offset_er_int, mass_cnt_int, mass_cnt_er_int, \
                 mass_bin_ctr_int, inv_mass_sing_int, inv_mass_wd_sing_int, popt_int = fit_MF(mass_intergrated,'Integrated')
