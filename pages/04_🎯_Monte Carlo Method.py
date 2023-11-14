@@ -201,7 +201,7 @@ with st.form("my_form"):
         
         # Primary
         ind_prim = comp_mass > 0
-        mass_prim = np.sum(teste_mass[ind_prim]) 
+        mass_prim = np.sum(mass[ind_prim]) 
         alpha_high_prim, alpha_low_prim, Mc_prim, offset_prim, alpha_high_prim_er, \
             alpha_low_prim_er, Mc_prim_er, offset_prim_er, mass_cnt, mass_cnt_er, \
                 mass_bin_ctr, inv_mass_prim, inv_mass_wd_prim, popt_prim = fit_MF(mass[ind_prim],'Primary')
