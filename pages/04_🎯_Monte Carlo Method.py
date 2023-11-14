@@ -27,6 +27,8 @@ st.set_page_config(page_title="Monte Carlo Method",layout='wide', page_icon='ðŸŽ
 
 file = st.file_uploader('Choose a file', type=['npy', 'csv'])
 
+form = st.sidebar.form("settings")
+
 if file is not None:
     
     # checking the file extension
@@ -58,6 +60,8 @@ if file is not None:
 
     else:
             st.warning("Unsupported file format. Please choose a .npy or .csv file.")
+            
+form.form_submit_button("Submit") 
             
 ###############################################################################
 # Get Monte Carlo Method
