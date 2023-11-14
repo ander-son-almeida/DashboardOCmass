@@ -223,9 +223,11 @@ with st.form("my_form"):
         results = st.container()
         with results:
             with col10:
-                st.subheader("$M_{{total}} (Integrated) = {} \pm {}~M_{{\odot}}$".format(total_mass_integrated, total_mass_integrated*0.20))
-                st.subheader("$Bin. Fraction = {}$".format(np.around(bin_fraction,decimals=2)))
-                st.subheader("$Seg. Ratio = {}$".format(np.around(mass_ratio, decimals=2)))
+                
+                st.text("$M_{{total}} (Integrated) = {} \pm {}~M_{{\odot}}$".format(total_mass_integrated, total_mass_integrated*0.20))
+                st.text("$M_{{total}} (Deitaled) = {} \pm {}~M_{{\odot}}$".format(total_mass_detailed, total_mass_detailed*0.20))
+                st.text("$Bin. Fraction = {}$".format(np.around(bin_fraction,decimals=2)))
+                st.text("$Seg. Ratio = {}$".format(np.around(mass_ratio, decimals=2)))
                 # st.sidebar.subheader("$KS Test = {} \pm {}$".format(np.around(KSTest[0], decimals=3), np.around(KSTest_pval[0], decimals=3)))
                 
             with col11:
