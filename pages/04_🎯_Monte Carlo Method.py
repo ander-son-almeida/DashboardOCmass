@@ -91,11 +91,8 @@ with st.form("my_form"):
                             st.write(data_obs)
                             break  
                         except pd.errors.ParserError:
-                            # Se a leitura falhar, continua para o próximo delimitador
                             pass
-                    
-                    st.info("Sucess upload file!")
-                    
+ 
                 else:
                     st.warning("Unsupported file format. Please choose a .npy or .csv file.")
                     
