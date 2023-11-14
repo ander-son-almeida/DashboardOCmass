@@ -19,6 +19,7 @@ from get_oc_mass import *
 from scipy.optimize import curve_fit
 import statistics as sts
 import io
+import zipfile
 
 
 #load grif isocrones
@@ -215,13 +216,7 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
         total_mass_detailed = int((mass_sing + inv_mass_sing) + (mass_prim + inv_mass_prim) + \
             (mass_sec + inv_mass_sec) + (inv_mass_wd_sing+inv_mass_wd_prim+inv_mass_wd_sec))
             
-        #######################################################################
-        #SAVE RESULTS
-        mass0 = np.full(data_obs.shape[0], mass, dtype=[('mass', float)])
-        er_mass0 = np.full(data_obs.shape[0], er_mass, dtype=[('er_mass', float)])
-        comp_mass0 = np.full(data_obs.shape[0], comp_mass, dtype=[('comp_mass', float)])
-        er_comp_mass0 = np.full(data_obs.shape[0], er_comp_mass, dtype=[('er_comp_mass', float)])
-        members_ship = rfn.merge_arrays((data_obs, mass, er_mass, comp_mass, er_comp_mass), flatten=True)
+ 
     
         col10, col11 = st.columns(2)
         results = st.container()
@@ -235,10 +230,23 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
                 st.write("$Bin. Fraction = {}$".format(np.around(bin_fraction,decimals=2)))
 
                 # Create an in-memory buffer
+                
                 with io.BytesIO() as buffer:
-                    # Write array to buffer
+                    
+                    # Write in buffer
+                                       
+                    # in npy
+                    mass0 = np.full(data_obs.shape[0], mass, dtype=[('mass', float)])
+                    er_mass0 = np.full(data_obs.shape[0], er_mass, dtype=[('er_mass', float)])
+                    comp_mass0 = np.full(data_obs.shape[0], comp_mass, dtype=[('comp_mass', float)])
+                    er_comp_mass0 = np.full(data_obs.shape[0], er_comp_mass, dtype=[('er_comp_mass', float)])
+                    members_ship = rfn.merge_arrays((data_obs, mass, er_mass, comp_mass, er_comp_mass), flatten=True)
+                    
+                    # csv DataFrame
+                    pd.DataFrame(members_ship).to_csv(buffer, delimiter=';', index=False)
+                    
                     np.save(buffer, members_ship)
-                    btn = st.sidebar.download_button(
+                    btn = st.download_button(
                         label="Download",
                         data = buffer, # Download buffer
                         file_name = 'teste.npy') 
