@@ -32,20 +32,19 @@ st.set_page_config(page_title="Monte Carlo Method",layout='wide', page_icon='�
 with st.form("my_form"):
     
     parameters_and_upload = st.container()
-    col6, col7 = st.columns(2)
+    col5, col6, col7 = st.columns(3)
     
     with parameters_and_upload:
-        with col6:
-          # age = 8.005
-          age = st.number_input("log(age)", value=8.005)
-          # dist = 135/1000
-          dist = st.number_input("Distance (kpc)", value=135/1000)
-          # FeH = -0.017 
-          FeH = st.number_input("Metallicity", value=-0.017)
-          # Av = 0.349
-          Av = st.number_input("Av", value=0.349)
+        
+        with col5:
+          st.subheader('Enter the fundamental parameters', divider='blue')
+          age = st.number_input("log(age):", value=8.005)
+          dist = st.number_input("Distance (kpc):", value=135/1000)
+          FeH = st.number_input("Metallicity:", value=-0.017)
+          Av = st.number_input("Extinction:", value=0.349)
           
-        with col7:
+        with col6:
+            st.subheader('Choose a file with photometric data', divider='blue')
             file = st.file_uploader('Choose a file', type=['npy', 'csv'])
             if file is not None:
                 # checking the file extension
@@ -75,6 +74,13 @@ with st.form("my_form"):
             
                 else:
                     st.warning("Unsupported file format. Please choose a .npy or .csv file.")
+                    
+        with col7:
+            st.write('🔹 lalalalalalalala')
+            st.write('🔹 lalalalalllalala')
+            st.write('🔹 lalalalalllalala')
+            st.write('🔹 lalalalalllalala')
+            st.write('🔹 lalalalalllalala')
                 
     submitted = st.form_submit_button("Submit")
     
