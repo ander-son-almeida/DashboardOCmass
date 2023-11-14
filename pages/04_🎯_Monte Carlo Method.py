@@ -107,7 +107,7 @@ with st.form("my_form"):
     
     
     # CMD com massa
-    cmd_scatter = pd.DataFrame({'G_BPmag - G_RPmag': data_obs['G_BPmag'] - data_obs['G_RPmag'], 
+    cmd_scatter = pd.DataFrame({'BPmag - RPmag': data_obs['BPmag'] - data_obs['RPmag'], 
                                 'Gmag': data_obs['Gmag'], 
                                 'Mass': mass})
     
