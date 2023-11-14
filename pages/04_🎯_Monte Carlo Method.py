@@ -27,59 +27,60 @@ st.set_page_config(page_title="Monte Carlo Method",layout='wide', page_icon='�
 
 file = st.file_uploader('Choose a file', type=['npy', 'csv'])
 
-form = st.sidebar.form("settings")
+with st.form("my_form"):
 
-if file is not None:
-    
-    # checking the file extension
-    file_extension = file.name.split(".")[-1]
-
-    if file_extension == "npy":
-        data_obs = np.load(file)
-        st.write("File content .npy:")
-        # st.write(data_obs)
-
-    elif file_extension == "csv":
+    if file is not None:
         
-        st.write("csv file detected. Testing different delimiters:")
-        
-        # list delimiters
-        delimiters = [",", ";", "\t", "|"]
-
-        for delimiter in delimiters:
-            try:
-                # Tenta ler o arquivo usando o delimitador atual
-                data_obs = pd.read_csv(file, delimiter=delimiter)
-                st.write(f"Delimitador testado: '{delimiter}'")
-                st.write("File content .csv:")
-                st.write(data_obs)
-                break  
-            except pd.errors.ParserError:
-                # Se a leitura falhar, continua para o próximo delimitador
-                pass
-
-    else:
-            st.warning("Unsupported file format. Please choose a .npy or .csv file.")
-            
-form.form_submit_button("Submit") 
-            
-###############################################################################
-# Get Monte Carlo Method
-
-age = 8.005
-dist = 135/1000
-FeH = -0.017 
-Av = 0.349
-
-# if data_obs:
+        # checking the file extension
+        file_extension = file.name.split(".")[-1]
     
-(mass, er_mass, comp_mass, er_comp_mass, bin_prob) = get_star_mass(age, dist, 
-                                                                   Av, FeH, 
-                                                                   data_obs, bin_frac=0.5, 
-                                                                   nruns=200, nstars=10000, 
-                                                                   seed=42)
-st.write("Resultado massas")
-st.write(mass)
+        if file_extension == "npy":
+            data_obs = np.load(file)
+            st.info("Sucess upload file npy!")
+            # st.write(data_obs)
+    
+        elif file_extension == "csv":
+            
+            st.write("csv file detected. Testing different delimiters:")
+            
+            # list delimiters
+            delimiters = [",", ";", "\t", "|"]
+    
+            for delimiter in delimiters:
+                try:
+                    # Tenta ler o arquivo usando o delimitador atual
+                    data_obs = pd.read_csv(file, delimiter=delimiter)
+                    st.write(f"Delimitador testado: '{delimiter}'")
+                    st.write("File content .csv:")
+                    st.write(data_obs)
+                    break  
+                except pd.errors.ParserError:
+                    # Se a leitura falhar, continua para o próximo delimitador
+                    pass
+    
+        else:
+                st.warning("Unsupported file format. Please choose a .npy or .csv file.")
+                
+    submitted = st.form_submit_button("Submit")
+    
+    if submitted:
+        ###############################################################################
+        # Get Monte Carlo Method
+        
+        age = 8.005
+        dist = 135/1000
+        FeH = -0.017 
+        Av = 0.349
+        
+        # if data_obs:
+            
+        (mass, er_mass, comp_mass, er_comp_mass, bin_prob) = get_star_mass(age, dist, 
+                                                                           Av, FeH, 
+                                                                           data_obs, bin_frac=0.5, 
+                                                                           nruns=200, nstars=10000, 
+                                                                           seed=42)
+        st.write("Resultado massas")
+        st.write(mass)
 
 
 
