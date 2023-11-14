@@ -30,51 +30,57 @@ st.set_page_config(page_title="Monte Carlo Method",layout='wide', page_icon='�
 #upload file
 
 with st.form("my_form"):
-
-    file = st.file_uploader('Choose a file', type=['npy', 'csv'])
-
-    if file is not None:
-        
-        # checking the file extension
-        file_extension = file.name.split(".")[-1]
     
-        if file_extension == "npy":
-            data_obs = np.load(file)
-            st.info("Sucess upload file npy!")
-            # st.write(data_obs)
+    parameters_and_upload = st.container()
+    col6, col7 = st.columns(2)
     
-        elif file_extension == "csv":
+    with parameters_and_upload:
+        with col6:
+          # age = 8.005
+          age = st.number_input("log(age)", value=8.005)
+          # dist = 135/1000
+          dist = st.number_input("Distance (kpc)", value=135/1000)
+          # FeH = -0.017 
+          FeH = st.number_input("Metallicity", value=-0.017)
+          # Av = 0.349
+          Av = st.number_input("Av", value=0.349)
+          
+        with col7:
+            file = st.file_uploader('Choose a file', type=['npy', 'csv'])
+            if file is not None:
+                # checking the file extension
+                file_extension = file.name.split(".")[-1]
             
-            st.write("csv file detected. Testing different delimiters:")
+                if file_extension == "npy":
+                    data_obs = np.load(file)
+                    st.info("Sucess upload file npy!")
+                    # st.write(data_obs)
             
-            # list delimiters
-            delimiters = [",", ";", "\t", "|"]
-    
-            for delimiter in delimiters:
-                try:
-                    # Tenta ler o arquivo usando o delimitador atual
-                    data_obs = pd.read_csv(file, delimiter=delimiter)
-                    st.write(f"Delimitador testado: '{delimiter}'")
-                    st.write("File content .csv:")
-                    st.write(data_obs)
-                    break  
-                except pd.errors.ParserError:
-                    # Se a leitura falhar, continua para o próximo delimitador
-                    pass
-    
-        else:
-                st.warning("Unsupported file format. Please choose a .npy or .csv file.")
+                elif file_extension == "csv":
+                    st.write("csv file detected. Testing different delimiters:")
+                    # list delimiters
+                    delimiters = [",", ";", "\t", "|"]
+            
+                    for delimiter in delimiters:
+                        try:
+                            # Tenta ler o arquivo usando o delimitador atual
+                            data_obs = pd.read_csv(file, delimiter=delimiter)
+                            st.write(f"Delimitador testado: '{delimiter}'")
+                            st.write("File content .csv:")
+                            st.write(data_obs)
+                            break  
+                        except pd.errors.ParserError:
+                            # Se a leitura falhar, continua para o próximo delimitador
+                            pass
+            
+                else:
+                    st.warning("Unsupported file format. Please choose a .npy or .csv file.")
                 
     submitted = st.form_submit_button("Submit")
     
     if submitted:
         ###############################################################################
         # Get Monte Carlo Method
-        
-        age = 8.005
-        dist = 135/1000
-        FeH = -0.017 
-        Av = 0.349
         
         loading = st.container()
         col8, col9 = st.columns(2)
