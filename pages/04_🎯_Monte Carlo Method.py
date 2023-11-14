@@ -119,7 +119,7 @@ with st.form("my_form"):
                                                                            seed=42)
         
         ###############################################################################
-        mass_ratio = comp_mass/mass
+        mass_ratio = np.average(comp_mass/mass)
         bin_fraction = comp_mass[comp_mass > 0].size/comp_mass.size
         
         
@@ -224,10 +224,10 @@ with st.form("my_form"):
         with results:
             with col10:
                 
-                st.text("$M_{{total}} (Integrated) = {} \pm {}~M_{{\odot}}$".format(total_mass_integrated, total_mass_integrated*0.20))
-                st.text("$M_{{total}} (Deitaled) = {} \pm {}~M_{{\odot}}$".format(total_mass_detailed, total_mass_detailed*0.20))
-                st.text("$Bin. Fraction = {}$".format(np.around(bin_fraction,decimals=2)))
-                st.text("$Seg. Ratio = {}$".format(np.around(mass_ratio, decimals=2)))
+                st.write("$M_{{total}} (Integrated) = {} \pm {}~M_{{\odot}}$".format(total_mass_integrated, total_mass_integrated*0.20))
+                st.write("$M_{{total}} (Deitaled) = {} \pm {}~M_{{\odot}}$".format(total_mass_detailed, total_mass_detailed*0.20))
+                st.write("$Bin. Fraction = {}$".format(np.around(bin_fraction,decimals=2)))
+                st.write("$Seg. Ratio = {}$".format(np.around(mass_ratio, decimals=2)))
                 # st.sidebar.subheader("$KS Test = {} \pm {}$".format(np.around(KSTest[0], decimals=3), np.around(KSTest_pval[0], decimals=3)))
                 
             with col11:
