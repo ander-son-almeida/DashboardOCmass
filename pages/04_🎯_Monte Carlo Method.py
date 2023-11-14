@@ -11,10 +11,12 @@ import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
 import numpy as np
+import numpy.lib.recfunctions as rfn
 import time
 from oc_tools_padova_edr3 import *
 from io import StringIO
 from get_oc_mass import *
+from scipy.optimize import curve_fit
 
 
 #load grif isocrones
@@ -56,7 +58,8 @@ with st.form("my_form"):
         with col6:
             st.subheader('Fundamental parameters', divider='blue', help='In this step you must enter the fundamental parameters'
                                                                          'such as age, distance, metallicity and extinction of '
-                                                                         'your open cluster.')
+                                                                         'your open cluster. Your cluster isochrone will be plotted'
+                                                                         'using these parameters, hopefully fitting the memberships in the CMD.')
             age = st.number_input("log(age):", value=8.005)
             dist = st.number_input("Distance (kpc):", value=135/1000)
             FeH = st.number_input("Metallicity:", value=-0.017)
@@ -117,37 +120,158 @@ with st.form("my_form"):
                                                                            nruns=200, nstars=10000, 
                                                                            seed=42)
         
+        ###############################################################################
+        mass_ratio = comp_mass/mass
+        bin_fraction = comp_mass[comp_mass > 0].size/comp_mass.size
+        
+        
+        ###############################################################################
+        # TOTAL MASS INTEGRATED
+        
+        # histogram mass 
+        massas = mass
+        massas = np.log10(massas[massas > 0.])
+        # find number of bins
+        nbins = int((massas.max() - massas.min())/0.05)
+        mass_cnt, mass_bins = np.histogram(massas,bins='auto')
+        mass_cnt_er = np.sqrt(mass_cnt)
+        mass_cnt_er = ((mass_cnt_er/mass_cnt)/2.303)
+        mass_cnt_er = mass_cnt_er[~np.isnan(mass_cnt_er)]
 
-        # Obtendo a isocrona bruta do grid, dada uma idade e metalicidade
-        grid_iso = get_iso_from_grid(age,(10.**FeH)*0.0152,filters,refMag, nointerp=False)
-         
-        # Faz uma isocrona - levando em consideração os parametros observacionais
-        fit_iso = make_obs_iso(filters, grid_iso, dist, Av, gaia_ext = True) 
+        mass_cnt = np.log10(mass_cnt)
+
+        mass_bin_ctr = mass_bins[:-1] + np.diff(mass_bins)/2
+        mass_bin_sz = np.diff(mass_bin_ctr)
+        mass_bin_sz = st.mode(mass_bin_sz)
+
+        mass_bin_ctr = mass_bin_ctr[mass_cnt >= 0]
+        mass_cnt = mass_cnt[mass_cnt >= 0]
+        mass_cnt_er = mass_cnt_er[mass_cnt >= 0]
+
+        ###############################################################################
+        #CALCULATING COEFFICIENTS - HIGH AND LOW MASS
+        guess = [0.02,-1.1, 1.1, 0.3]
+        popt, pcov = curve_fit(twosided_IMF, mass_bin_ctr, mass_cnt, p0=guess, 
+                                sigma=mass_cnt_er,max_nfev=1e5,
+                                bounds=([-0.2, -3, 0., 0.01], [0.2, 0.0, np.inf, 3.0]),
+                                )
+
+        ###############################################################################
+        # extrapolating with the mass function of all masses
+
+        mass_pts = np.arange(np.log10(0.09),mass_bin_ctr.min(),mass_bin_sz)
+        Nstars = twosided_IMF(mass_pts,popt[0], popt[1], popt[2], popt[3])
+        ind = Nstars >= 0 #indicando Nstars negativas
+        massa_total_visivel = np.sum(mass) +  np.sum(comp_mass) 
+        massa_total_nao_visivel = np.sum(10**mass_pts[ind] * 10**Nstars[ind])
+
+
+        #######################################################################
+        # extrapolation to WDs
+        # https://ui.adsabs.harvard.edu/abs/2018ApJ...866...21C/abstract    
+        mass_pts = np.arange(mass_bin_ctr.max(), np.log10(7.5),np.diff(mass_bin_ctr)[0])
+        Nstars = twosided_IMF(mass_pts, popt[0], popt[1], popt[2], popt[3]) 
+        # total mass in WDs
+        inv_mass_wd = np.sum(IMFR(10**mass_pts) * 10**Nstars*(1+bin_fraction))
+
+        ###############################################################################
+        total_mass_integrated = int(massa_total_visivel + massa_total_nao_visivel * \
+            (1 + mass_ratio[mass_ratio>0.].mean()*bin_fraction) + inv_mass_wd)
+
+
+        ###############################################################################
+        mass_intergrated = np.concatenate((teste_mass,teste_comp_mass), axis=0)
+        alpha_high_int, alpha_low_int, Mc_int, offset_int, alpha_high_er_int, \
+            alpha_low_er_int, Mc_er_int, offset_er_int, mass_cnt_int, mass_cnt_er_int, \
+                mass_bin_ctr_int, inv_mass_sing_int, inv_mass_wd_sing_int, popt_int = fit_MF(mass_intergrated,'Integrated')
+
+        
+###############################################################################
+        
+        # TOTAL MASS DETAILED
+        
+        # Single
+        ind_sing = comp_mass == 0
+        mass_sing = np.sum(mass[ind_sing]) 
+        alpha_high_ind, alpha_low_ind, Mc_ind, offset_ind, alpha_high_ind_er, \
+            alpha_low_ind_er, Mc_ind_er, offset_ind_er, mass_cnt, mass_cnt_er, \
+                mass_bin_ctr, inv_mass_sing, inv_mass_wd_sing, popt_ind = fit_MF(mass[ind_sing],'Single')
+                
+        
+        # Primary
+        ind_prim = comp_mass > 0
+        mass_prim = np.sum(teste_mass[ind_prim]) 
+        alpha_high_prim, alpha_low_prim, Mc_prim, offset_prim, alpha_high_prim_er, \
+            alpha_low_prim_er, Mc_prim_er, offset_prim_er, mass_cnt, mass_cnt_er, \
+                mass_bin_ctr, inv_mass_prim, inv_mass_wd_prim, popt_prim = fit_MF(mass[ind_prim],'Primary')
+                
+        
+        # Secondary
+        ind_sec = comp_mass > 0
+        mass_sec = np.sum(comp_mass[ind_sec]) 
+
+        alpha_high_sec, alpha_low_sec, Mc_sec, offset_sec, alpha_high_sec_er, \
+            alpha_low_sec_er, Mc_sec_er, offset_sec_er, mass_cnt, mass_cnt_er, \
+                mass_bin_ctr, inv_mass_sec, inv_mass_wd_sec, popt_sec = fit_MF(comp_mass[ind_sec],'Secondary')
+                
         
         
-        # CMD com massa
-        cmd_scatter = pd.DataFrame({'BPmag - RPmag': data_obs['BPmag'] - data_obs['RPmag'], 
-                                    'Gmag': data_obs['Gmag'], 
-                                    'Mass': mass})
+        total_mass_detailed = int((mass_sing + inv_mass_sing) + (mass_prim + inv_mass_prim) + \
+            (mass_sec + inv_mass_sec) + (inv_mass_wd_sing+inv_mass_wd_prim+inv_mass_wd_sec))
         
-        cmd_iso = pd.DataFrame({'G_BPmag - G_RPmag': fit_iso['G_BPmag']-fit_iso['G_RPmag'], 
-                                'Gmag': fit_iso['Gmag']})
+    
+    
+        col10, col11 = st.columns(2)
+        results = st.container()
+        with results:
+            with col10:
+                st.subheader("$M_{{total}} (Integrated) = {} \pm {}~M_{{\odot}}$".format(total_mass_integrated, total_mass_integrated*0.20))
+                st.subheader("$Bin. Fraction = {}$".format(np.around(bin_fraction,decimals=2)))
+                st.subheader("$Seg. Ratio = {}$".format(np.around(mass_ratio, decimals=2)))
+                # st.sidebar.subheader("$KS Test = {} \pm {}$".format(np.around(KSTest[0], decimals=3), np.around(KSTest_pval[0], decimals=3)))
+                
+            with col11:
+
+                # Obtendo a isocrona bruta do grid, dada uma idade e metalicidade
+                grid_iso = get_iso_from_grid(age,(10.**FeH)*0.0152,filters,refMag, nointerp=False)
+                 
+                # Faz uma isocrona - levando em consideração os parametros observacionais
+                fit_iso = make_obs_iso(filters, grid_iso, dist, Av, gaia_ext = True) 
+                
+                
+                # CMD com massa
+                cmd_scatter = pd.DataFrame({'BPmag - RPmag': data_obs['BPmag'] - data_obs['RPmag'], 
+                                            'Gmag': data_obs['Gmag'], 
+                                            'Mass': mass})
+                
+                cmd_iso = pd.DataFrame({'G_BPmag - G_RPmag': fit_iso['G_BPmag']-fit_iso['G_RPmag'], 
+                                        'Gmag': fit_iso['Gmag']})
+                
+                fig1 = px.scatter(cmd_scatter, x = 'BPmag - RPmag', y = 'Gmag',
+                                  opacity=0.6, color= 'Mass', color_continuous_scale = 'jet_r', size=mass)
+                
+                fig2 = px.line(cmd_iso, x = 'G_BPmag - G_RPmag', y = 'Gmag')
+                
+                fig01 = go.Figure(data = fig1.data + fig2.data).update_layout(coloraxis=fig1.layout.coloraxis)
+                fig01.update_layout(xaxis_title= 'G_BP - G_RP (mag)',
+                                  yaxis_title="G (mag)",
+                                  coloraxis_colorbar=dict(title="M☉"),
+                                  yaxis_range=[22,2],
+                                  xaxis_range=[-1,6])
+                
+                loading.empty()
+                st.plotly_chart(fig01, use_container_width=False)
         
-        fig1 = px.scatter(cmd_scatter, x = 'BPmag - RPmag', y = 'Gmag',
-                          opacity=0.6, color= 'Mass', color_continuous_scale = 'jet_r', size=mass)
         
-        fig2 = px.line(cmd_iso, x = 'G_BPmag - G_RPmag', y = 'Gmag')
         
-        fig01 = go.Figure(data = fig1.data + fig2.data).update_layout(coloraxis=fig1.layout.coloraxis)
-        fig01.update_layout(xaxis_title= 'G_BP - G_RP (mag)',
-                          yaxis_title="G (mag)",
-                          coloraxis_colorbar=dict(title="M☉"),
-                          yaxis_range=[22,2],
-                          xaxis_range=[-1,6])
-        
-        loading.empty()
-        st.plotly_chart(fig01, use_container_width=False)
-            
+        #######################################################################
+        # SAVE RESULTS
+        # mass = np.full(data_obs.shape[0],mass, dtype=[('mass', float)])
+        # er_mass = np.full(data_obs.shape[0], er_mass, dtype=[('er_mass', float)])
+        # comp_mass = np.full(data_obs.shape[0], comp_mass, dtype=[('comp_mass', float)])
+        # er_comp_mass = np.full(data_obs.shape[0], er_comp_mass, dtype=[('er_comp_mass', float)])
+
+        # members_ship = rfn.merge_arrays((data_obs, mass, er_mass, comp_mass, er_comp_mass), flatten=True)
     
 
 
