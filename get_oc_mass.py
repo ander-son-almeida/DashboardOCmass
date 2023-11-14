@@ -51,17 +51,12 @@ def calculate_masses(age, dist, av, feh, obs, bin_frac, nruns, nstars):
     e_mass = []
     e_c_mass = []
     is_bin = []
-    
-    total_iterations = obs.shape[0]
-    
+
     for j in range(obs.shape[0]):
         aux = np.sum((obs_mag[j,:]-mod_mag)**2,axis=1)
         ind.append(np.argmin(aux))
         
-        progress = "#" * (j + 1)
-        remaining = " " * (total_iterations - j - 1)
-        percentage = (j + 1) / total_iterations * 100
-        st.write(f"\r[{progress}{remaining}] {percentage:.2f}%", end="", flush=True)
+        print(j)
         
         
     masses = mod_cluster['Mass'][ind]
