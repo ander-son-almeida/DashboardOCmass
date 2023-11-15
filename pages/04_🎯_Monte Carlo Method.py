@@ -63,7 +63,7 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
             age = st.number_input("log(age):", value=8.005)
             dist = st.number_input("Distance (kpc):", value=135/1000)
             FeH = st.number_input("Metallicity:", value=-0.017)
-            Av = st.number_input("Extinction:", value=0.349)
+            Av = st.number_input("Extinction (mag):", value=0.349)
 
         with col7:
             st.subheader('Uploading your memberships file', divider='blue')
@@ -255,9 +255,10 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
                 st.write("$M_{{total}} (Deitaled) = {} \pm {}~M_{{\odot}}$".format(total_mass_detailed, int(total_mass_detailed*0.20)))
                 st.write("$Bin. Fraction = {}$".format(np.around(bin_fraction,decimals=2)))
 
-
-        
+# download files
 try:
+    st.write('Download the results in the desired file format. Unfortunately Streamlit restarts '
+             ' the application after clicking the download button. ')
     with io.BytesIO() as buffer:
         np.save(buffer, members_ship)
         st.download_button(
