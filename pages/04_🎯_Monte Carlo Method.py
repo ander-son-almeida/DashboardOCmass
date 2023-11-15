@@ -264,11 +264,11 @@ try:
         st.download_button(
             label="Download file npy",
             data = buffer, 
-            file_name = '{}.npy'.format(file.name)) 
+            file_name = '{}.npy'.format(file.name.split('.')[0])) 
         
     # CSV DataFrame
     csv = (pd.DataFrame(members_ship)).to_csv(index=False)
-    st.download_button("Download file csv", csv, "{}.csv".format(file.name))
+    st.download_button("Download file csv", csv, "{}.csv".format(file.name.split('.')[0]))
 except:
     pass
 
