@@ -234,6 +234,19 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
                 st.write("$M_{{total}} (Deitaled) = {} \pm {}~M_{{\odot}}$".format(total_mass_detailed, int(total_mass_detailed*0.20)))
                 st.write("$Bin. Fraction = {}$".format(np.around(bin_fraction,decimals=2)))
 
+                try:
+                    with io.BytesIO() as buffer:
+                        np.save(buffer, members_ship)
+                        st.download_button(
+                            label="Download file npy",
+                            data = buffer, 
+                            file_name = 'teste.npy') 
+                        
+                    # CSV DataFrame
+                    csv = pd.DataFrame(members_ship).to_csv(index=False, sep=';')
+                    st.download_button("Download file csv", csv, "file.csv", "text/csv", key='download-csv')
+                except:
+                    pass
 
 
             with col11:
@@ -268,16 +281,7 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
                 # loading.empty()
                 st.plotly_chart(fig01, use_container_width=True)
         
-with io.BytesIO() as buffer:
-    np.save(buffer, members_ship)
-    st.download_button(
-        label="Download file npy",
-        data = buffer, 
-        file_name = 'teste.npy') 
-    
-# CSV DataFrame
-csv = pd.DataFrame(members_ship).to_csv(index=False, sep=';')
-st.download_button("Download file csv", csv, "file.csv", "text/csv", key='download-csv')
+
         
 
     
