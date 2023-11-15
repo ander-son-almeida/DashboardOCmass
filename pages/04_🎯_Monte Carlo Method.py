@@ -269,8 +269,8 @@ except:
 try:
     with io.BytesIO() as buffer:
         np.save(buffer, members_ship)
-        # st.write('Download the results in the desired file format. Unfortunately Streamlit restarts '
-        #           ' the application after clicking the download button. ')
+        st.write('Download the results in the desired file format. Unfortunately Streamlit restarts '
+                  ' the application after clicking the download button. ')
         st.download_button(
             label="Download file npy",
             data = buffer, 
