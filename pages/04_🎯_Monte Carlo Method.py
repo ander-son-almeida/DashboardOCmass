@@ -256,6 +256,7 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
                 st.write("$Bin. Fraction = {}$".format(np.around(bin_fraction,decimals=2)))
 
 # download files
+file_name = (file.name).split('.')[0]
 try:
     with io.BytesIO() as buffer:
         np.save(buffer, members_ship)
@@ -264,11 +265,11 @@ try:
         st.download_button(
             label="Download file npy",
             data = buffer, 
-            file_name = '{}_mc.npy'.format(file.name.split('.')[0])) 
+            file_name = '{}_mc.npy'.format(file_name)) 
         
     # CSV DataFrame
     csv = (pd.DataFrame(members_ship)).to_csv(index=False)
-    st.download_button("Download file csv", csv, "{}_mc.csv".format(file.name.split('.')[0]))
+    st.download_button("Download file csv", csv, "{}_mc.csv".format(file_name))
 except:
     pass
 
