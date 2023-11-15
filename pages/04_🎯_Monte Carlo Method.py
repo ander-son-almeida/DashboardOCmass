@@ -47,7 +47,7 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
             st.write('🔹 The Monte Carlo mass determination method only works with Gaia eDR3 or DR3 photometry;')
             
             st.write('🔹 This app/code supports two types of files: .npy or .csv. Make sure your memberships file'
-                 ' contains the columns "Gmag", "BPmag" and "RPmag" and their respective errors "e_Gmag", "e_BPmag" and "e_RPmag" - written this way- written this way.')
+                 ' contains the columns "Gmag", "BPmag" and "RPmag" and their respective errors "e_Gmag", "e_BPmag" and "e_RPmag" - written this way.')
             
             st.write('🔹 We provide an example file to help you interact with this app: testete')
         
@@ -221,12 +221,7 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
             with col10:
                 
                 load_text.empty()
-                st.write("$M_{{total}} (Integrated) = {} \pm {}~M_{{\odot}}$".format(total_mass_integrated, int(total_mass_integrated*0.20)))
-                st.write("$M_{{total}} (Deitaled) = {} \pm {}~M_{{\odot}}$".format(total_mass_detailed, int(total_mass_detailed*0.20)))
-                st.write("$Bin. Fraction = {}$".format(np.around(bin_fraction,decimals=2)))
-
-            with col11:
-
+                
                 # Obtendo a isocrona bruta do grid, dada uma idade e metalicidade
                 grid_iso = get_iso_from_grid(age,(10.**FeH)*0.0152,filters,refMag, nointerp=False)
                  
@@ -254,6 +249,13 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
                                   yaxis_range=[22,2],
                                   xaxis_range=[-1,6])
                 st.plotly_chart(fig01, use_container_width=True)
+                
+            with col11:
+                st.write("$M_{{total}} (Integrated) = {} \pm {}~M_{{\odot}}$".format(total_mass_integrated, int(total_mass_integrated*0.20)))
+                st.write("$M_{{total}} (Deitaled) = {} \pm {}~M_{{\odot}}$".format(total_mass_detailed, int(total_mass_detailed*0.20)))
+                st.write("$Bin. Fraction = {}$".format(np.around(bin_fraction,decimals=2)))
+
+
         
 try:
     with io.BytesIO() as buffer:
