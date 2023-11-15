@@ -214,10 +214,10 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
             (mass_sec + inv_mass_sec) + (inv_mass_wd_sing+inv_mass_wd_prim+inv_mass_wd_sec))
         
         # save record to npy
-        mass0 = np.full(data_obs.shape[0], mass, dtype=[('mass', float)])
-        er_mass0 = np.full(data_obs.shape[0], er_mass, dtype=[('er_mass', float)])
-        comp_mass0 = np.full(data_obs.shape[0], comp_mass, dtype=[('comp_mass', float)])
-        er_comp_mass0 = np.full(data_obs.shape[0], er_comp_mass, dtype=[('er_comp_mass', float)])
+        mass0 = np.full(data_obs.shape[0], mass, dtype=[('Mass', float)])
+        er_mass0 = np.full(data_obs.shape[0], er_mass, dtype=[('er_Mass', float)])
+        comp_mass0 = np.full(data_obs.shape[0], comp_mass, dtype=[('comp_Mass', float)])
+        er_comp_mass0 = np.full(data_obs.shape[0], er_comp_mass, dtype=[('er_comp_Mass', float)])
         members_ship = rfn.merge_arrays((data_obs, mass0, er_mass0, comp_mass0, er_comp_mass0), flatten=True)
 
         col10, col11 = st.columns(2)
