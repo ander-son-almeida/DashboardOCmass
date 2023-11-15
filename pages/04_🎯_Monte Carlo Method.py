@@ -261,7 +261,10 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
                 st.write("$Bin. Fraction = {}$".format(np.around(bin_fraction,decimals=2)))
 
 # download files
-file_name = (file.name).split('.')[0]
+try:
+    file_name = (file.name).split('.')[0]
+except:
+    pass
 
 try:
     with io.BytesIO() as buffer:
