@@ -47,7 +47,7 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
             st.write('🔹 The Monte Carlo mass determination method only works with Gaia eDR3 or DR3 photometry;')
             
             st.write('🔹 This app/code supports two types of files: .npy or .csv. Make sure your memberships file'
-                 ' contains the columns "Gmag", "BPmag" and "RPmag" - written this way.')
+                 ' contains the columns "Gmag", "BPmag" and "RPmag" and their respective errors "e_Gmag", "e_BPmag" and "e_RPmag" - written this way- written this way.')
             
             st.write('🔹 We provide an example file to help you interact with this app: testete')
         
@@ -86,8 +86,8 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
                             # Tenta ler o arquivo usando o delimitador atual
                             data_obs = pd.read_csv(file, delimiter=delimiter)
                             data_obs = data_obs.to_records()
-                            st.write(f"Delimitador testado: '{delimiter}'")
-                            st.write("File content .csv:")
+                            # st.write(f"Delimitador testado: '{delimiter}'")
+                            # st.write("File content .csv:")
                             break  
                         except pd.errors.ParserError:
                             pass
