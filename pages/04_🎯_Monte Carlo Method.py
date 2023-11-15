@@ -67,7 +67,7 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
 
         with col7:
             st.subheader('Uploading your memberships file', divider='blue')
-            file = st.file_uploader('Choose a file with photometric data', type=['npy', 'csv'])
+            file = st.file_uploader('Choose a file with photometric data', type=['npy', 'csv'], accept_multiple_files=False)
             if file is not None:
                 # checking the file extension
                 file_extension = file.name.split(".")[-1]
@@ -264,11 +264,11 @@ try:
         st.download_button(
             label="Download file npy",
             data = buffer, 
-            file_name = 'teste.npy') 
+            file_name = '{}.npy'.format(file.name)) 
         
     # CSV DataFrame
     csv = (pd.DataFrame(members_ship)).to_csv(index=False)
-    st.download_button("Download file csv", csv, "file.csv")
+    st.download_button("Download file csv", csv, "{}.csv".format(file.name))
 except:
     pass
 
