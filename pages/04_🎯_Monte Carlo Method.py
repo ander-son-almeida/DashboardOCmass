@@ -61,9 +61,9 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
             
         with col6:
             st.subheader('Fundamental parameters', divider='blue', help='In this step you must enter the fundamental parameters'
-                                                                         'such as age, distance, metallicity and extinction of '
-                                                                         'your open cluster. Your cluster isochrone will be plotted'
-                                                                         'using these parameters, hopefully fitting the memberships in the CMD.')
+                                                                         ' such as age, distance, metallicity and extinction of '
+                                                                         ' your open cluster. Your cluster isochrone will be plotted'
+                                                                         ' using these parameters, hopefully fitting the memberships in the CMD.')
             age = st.number_input("log(age):", value=8.005)
             dist = st.number_input("Distance (kpc):", value=135/1000)
             FeH = st.number_input("Metallicity:", value=-0.017)
@@ -215,7 +215,13 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
         
         total_mass_detailed = int((mass_sing + inv_mass_sing) + (mass_prim + inv_mass_prim) + \
             (mass_sec + inv_mass_sec) + (inv_mass_wd_sing+inv_mass_wd_prim+inv_mass_wd_sec))
-            
+        
+        # save record to npy
+        mass0 = np.full(data_obs.shape[0], mass, dtype=[('mass', float)])
+        er_mass0 = np.full(data_obs.shape[0], er_mass, dtype=[('er_mass', float)])
+        comp_mass0 = np.full(data_obs.shape[0], comp_mass, dtype=[('comp_mass', float)])
+        er_comp_mass0 = np.full(data_obs.shape[0], er_comp_mass, dtype=[('er_comp_mass', float)])
+        members_ship = rfn.merge_arrays((data_obs, mass, er_mass, comp_mass, er_comp_mass), flatten=True)
  
     
         col10, col11 = st.columns(2)
@@ -234,14 +240,6 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
                 with io.BytesIO() as buffer:
                     
                     # Write in buffer
-                                       
-                    # in npy
-                    mass0 = np.full(data_obs.shape[0], mass, dtype=[('mass', float)])
-                    er_mass0 = np.full(data_obs.shape[0], er_mass, dtype=[('er_mass', float)])
-                    comp_mass0 = np.full(data_obs.shape[0], comp_mass, dtype=[('comp_mass', float)])
-                    er_comp_mass0 = np.full(data_obs.shape[0], er_comp_mass, dtype=[('er_comp_mass', float)])
-                    members_ship = rfn.merge_arrays((data_obs, mass, er_mass, comp_mass, er_comp_mass), flatten=True)
-
                     np.save(buffer, members_ship)
                     st.download_button(
                         label="Download file npy",
