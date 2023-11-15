@@ -47,9 +47,9 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
             st.write('🔹 The Monte Carlo mass determination method only works with Gaia eDR3 or DR3 photometry;')
             
             st.write('🔹 This app/code supports two types of files: .npy or .csv. Make sure your memberships file'
-                 ' contains the columns "Gmag", "BPmag" and "RPmag" and their respective errors "e_Gmag", "e_BPmag" and "e_RPmag" - written this way.')
+                 ' contains the columns "Gmag", "BPmag" and "RPmag" and their respective errors "e_Gmag", "e_BPmag" and "e_RPmag" - written this way;')
             
-            st.write('🔹 We provide an example file to help you interact with this app: [download example](https://github.com/ander-son-almeida/DashboardOCmass/raw/main/examples/exemple_files.zip)')
+            st.write('🔹 We provide an example file to help you interact with this app: [download example](https://github.com/ander-son-almeida/DashboardOCmass/raw/main/examples/exemple_files.zip);')
         
             st.write('🔹 The calculation of masses is not immediate. The greater the number of members in the open '
                  'cluster, the longer it will take to determine individual masses.')
@@ -264,11 +264,11 @@ try:
         st.download_button(
             label="Download file npy",
             data = buffer, 
-            file_name = '{}.npy'.format(file.name.split('.')[0])) 
+            file_name = '{}_mc.npy'.format(file.name.split('.')[0])) 
         
     # CSV DataFrame
     csv = (pd.DataFrame(members_ship)).to_csv(index=False)
-    st.download_button("Download file csv", csv, "{}.csv".format(file.name.split('.')[0]))
+    st.download_button("Download file csv", csv, "{}_mc.csv".format(file.name.split('.')[0]))
 except:
     pass
 
