@@ -35,7 +35,6 @@ st.set_page_config(page_title="Monte Carlo Method",layout='wide', page_icon='�
 #upload file
 parameters_and_upload = st.container()
 
-# with st.form("my_form"):
 with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):	
     
     col5, col6, col7 = st.columns(3)
@@ -55,10 +54,7 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
             st.write('🔹 The calculation of masses is not immediate. The greater the number of members in the open '
                  'cluster, the longer it will take to determine individual masses.')
             
-            
 
-            # st.write('🔹 lalalalalllalala')
-            
         with col6:
             st.subheader('Fundamental parameters', divider='blue', help='In this step you must enter the fundamental parameters'
                                                                          ' such as age, distance, metallicity and extinction of '
@@ -89,9 +85,9 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
                         try:
                             # Tenta ler o arquivo usando o delimitador atual
                             data_obs = pd.read_csv(file, delimiter=delimiter)
+                            data_obs = data_obs.to_records()
                             st.write(f"Delimitador testado: '{delimiter}'")
                             st.write("File content .csv:")
-                            st.write(data_obs)
                             break  
                         except pd.errors.ParserError:
                             pass
@@ -273,7 +269,7 @@ try:
         
     # CSV DataFrame
     csv = pd.DataFrame(members_ship).to_csv(index=False, sep=';')
-    st.download_button("Download file csv", csv, "file.csv", "text/csv", key='download-csv')
+    st.download_button("Download file csv", csv, "file.csv")
 except:
     pass
         
