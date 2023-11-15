@@ -49,7 +49,7 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
             st.write('🔹 This app/code supports two types of files: .npy or .csv. Make sure your memberships file'
                  ' contains the columns "Gmag", "BPmag" and "RPmag" and their respective errors "e_Gmag", "e_BPmag" and "e_RPmag" - written this way.')
             
-            st.write('🔹 We provide an example file to help you interact with this app: download example [link](https://github.com/ander-son-almeida/DashboardOCmass/raw/main/examples/exemple_files.zip)')
+            st.write('🔹 We provide an example file to help you interact with this app: [download example](https://github.com/ander-son-almeida/DashboardOCmass/raw/main/examples/exemple_files.zip)')
         
             st.write('🔹 The calculation of masses is not immediate. The greater the number of members in the open '
                  'cluster, the longer it will take to determine individual masses.')
