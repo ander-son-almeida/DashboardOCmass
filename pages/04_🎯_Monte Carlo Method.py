@@ -61,10 +61,10 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
                                                                          ' your open cluster. Your cluster isochrone will be plotted'
                                                                          ' using these parameters, hopefully fitting the memberships in the CMD.')
             
-            age = st.number_input("log(age):", value=None, placeholder="Type a number...")
-            dist = st.number_input("Distance (kpc):", value=None, placeholder="Type a number...")
-            FeH = st.number_input("Metallicity:", value=None, placeholder="Type a number...")
-            Av = st.number_input("Extinction (mag):", value=None, placeholder="Type a number...")
+            age = st.number_input("log(age):", value=None, placeholder="Type a number...", format="%0.3f")
+            dist = st.number_input("Distance (kpc):", value=None, placeholder="Type a number...", format="%0.3f")
+            FeH = st.number_input("Metallicity:", value=None, placeholder="Type a number...", format="%0.3f")
+            Av = st.number_input("Extinction (mag):", value=None, placeholder="Type a number...", format="%0.3f")
 
         with col7:
             st.subheader('Uploading your memberships file', divider='blue')
