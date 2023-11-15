@@ -104,11 +104,15 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
         
         ###############################################################################
         # Get Monte Carlo Method
-        (mass, er_mass, comp_mass, er_comp_mass, bin_prob) = get_star_mass(age, dist, 
-                                                                           Av, FeH, 
-                                                                           data_obs, bin_frac=0.5, 
-                                                                           nruns=200, nstars=10000, 
-                                                                           seed=42)
+        
+        try:
+            (mass, er_mass, comp_mass, er_comp_mass, bin_prob) = get_star_mass(age, dist, 
+                                                                               Av, FeH, 
+                                                                               data_obs, bin_frac=0.5, 
+                                                                               nruns=200, nstars=10000, 
+                                                                               seed=42)
+        except:
+            st.warning('Check if you entered the fundamental parameters and the memberships file correctly!', icon="⚠️")
         
         ###############################################################################
         mass_ratio = np.average(comp_mass/mass)
