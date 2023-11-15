@@ -230,32 +230,27 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
             with col10:
                 
                 load_text.empty()
-                
                 st.write("$M_{{total}} (Integrated) = {} \pm {}~M_{{\odot}}$".format(total_mass_integrated, int(total_mass_integrated*0.20)))
                 st.write("$M_{{total}} (Deitaled) = {} \pm {}~M_{{\odot}}$".format(total_mass_detailed, int(total_mass_detailed*0.20)))
                 st.write("$Bin. Fraction = {}$".format(np.around(bin_fraction,decimals=2)))
 
-                # Create an in-memory buffer
                 
                 with io.BytesIO() as buffer:
-                    
-                    # Write in buffer
                     np.save(buffer, members_ship)
                     st.download_button(
                         label="Download file npy",
-                        data = buffer, # Download buffer
+                        data = buffer, 
                         file_name = 'teste.npy') 
                     
-                    # csv DataFrame
-                    csv = pd.DataFrame(members_ship).to_csv(index=False, sep=';')
-                    st.download_button(
-                       "Download file csv",
-                       csv,
-                       "file.csv",
-                       "text/csv",
-                       key='download-csv')
+                # CSV DataFrame
+                csv = pd.DataFrame(members_ship).to_csv(index=False, sep=';')
+                st.download_button(
+                   "Download file csv",
+                   csv,
+                   "file.csv",
+                   "text/csv",
+                   key='download-csv')
 
-                
             with col11:
 
                 # Obtendo a isocrona bruta do grid, dada uma idade e metalicidade
