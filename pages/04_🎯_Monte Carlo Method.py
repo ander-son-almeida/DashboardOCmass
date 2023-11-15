@@ -222,8 +222,7 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
         comp_mass0 = np.full(data_obs.shape[0], comp_mass, dtype=[('comp_mass', float)])
         er_comp_mass0 = np.full(data_obs.shape[0], er_comp_mass, dtype=[('er_comp_mass', float)])
         members_ship = rfn.merge_arrays((data_obs, mass, er_mass, comp_mass, er_comp_mass), flatten=True)
- 
-    
+
         col10, col11 = st.columns(2)
         results = st.container()
         with results:
@@ -233,21 +232,6 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
                 st.write("$M_{{total}} (Integrated) = {} \pm {}~M_{{\odot}}$".format(total_mass_integrated, int(total_mass_integrated*0.20)))
                 st.write("$M_{{total}} (Deitaled) = {} \pm {}~M_{{\odot}}$".format(total_mass_detailed, int(total_mass_detailed*0.20)))
                 st.write("$Bin. Fraction = {}$".format(np.around(bin_fraction,decimals=2)))
-
-                try:
-                    with io.BytesIO() as buffer:
-                        np.save(buffer, members_ship)
-                        st.download_button(
-                            label="Download file npy",
-                            data = buffer, 
-                            file_name = 'teste.npy') 
-                        
-                    # CSV DataFrame
-                    csv = pd.DataFrame(members_ship).to_csv(index=False, sep=';')
-                    st.download_button("Download file csv", csv, "file.csv", "text/csv", key='download-csv')
-                except:
-                    pass
-
 
             with col11:
 
@@ -277,11 +261,21 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
                                   coloraxis_colorbar=dict(title="M☉"),
                                   yaxis_range=[22,2],
                                   xaxis_range=[-1,6])
-                
-                # loading.empty()
                 st.plotly_chart(fig01, use_container_width=True)
         
-
+try:
+    with io.BytesIO() as buffer:
+        np.save(buffer, members_ship)
+        st.download_button(
+            label="Download file npy",
+            data = buffer, 
+            file_name = 'teste.npy') 
+        
+    # CSV DataFrame
+    csv = pd.DataFrame(members_ship).to_csv(index=False, sep=';')
+    st.download_button("Download file csv", csv, "file.csv", "text/csv", key='download-csv')
+except:
+    pass
         
 
     
