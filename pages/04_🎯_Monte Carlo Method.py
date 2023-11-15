@@ -242,14 +242,21 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
                     er_comp_mass0 = np.full(data_obs.shape[0], er_comp_mass, dtype=[('er_comp_mass', float)])
                     members_ship = rfn.merge_arrays((data_obs, mass, er_mass, comp_mass, er_comp_mass), flatten=True)
                     
-                    # csv DataFrame
-                    pd.DataFrame(members_ship).to_csv(buffer, index=False)
-                    
                     np.save(buffer, members_ship)
                     btn = st.download_button(
-                        label="Download",
-                        data = buffer.getvalue(), # Download buffer
-                        file_name = 'teste.zip') 
+                        label="Download file npy",
+                        data = buffer, # Download buffer
+                        file_name = 'teste.npy') 
+                    
+                    # csv DataFrame
+                    csv = pd.DataFrame(members_ship).to_csv(index=False, sep=';')
+                    st.download_button(
+                       "Download file csv",
+                       csv,
+                       "file.csv",
+                       "text/csv",
+                       key='download-csv'
+                    )
 
                 
             with col11:
