@@ -256,6 +256,20 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
                                   xaxis_range=[-1,6])
                 st.plotly_chart(fig01, use_container_width=True)
                 
+                st.write('''
+                         🔹 MF Integrated: is the determination of the total mass, excluding binary companions, and from that, it estimates the invisible mass through an extrapolation, which includes the contribution of binaries and white dwarfs.
+ 
+                         🔹 MF Detailed: It includes the determination of the mass of 
+                            the cluster by summing the observed star masses to the contribution 
+                            of unobserved stars as determined from MFs determined for single, 
+                            primary, and secondary stars, separately. The masses of White dwarfs are obtained through extrapolation.
+                            
+                        For more details:
+                         
+                         ''')
+                
+                st.link_button("Go to Publication", "https://academic.oup.com/mnras/article/525/2/2315/7233111?guestAccessKey=dd38b380-3cfc-40e7-b29d-66c1c9a819f3&utm_source=authortollfreelink&utm_campaign=mnras&utm_medium=email")
+                
             with col11:
                 st.write("Integrated:")
                 st.write("$M_{{wd}} = {}~M_{{\odot}}$ (White dwarf)".format((inv_mass_wd)))
