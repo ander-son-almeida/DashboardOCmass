@@ -261,9 +261,8 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
                 st.write("$M_{{total}} (White dwarf) = {} $".format(inv_mass_wd))
                 st.write("$M_{{total}} = {} \pm {}~M_{{\odot}}$".format(total_mass_integrated, int(total_mass_integrated*0.20)))
                 
-                st.devider()
+                st.write('---')
                 
-
                 
                 st.write("Deitaled:")
                 st.write("$M_{{total}} (Single stars) = {} $".format((mass_sing + inv_mass_sing)))
@@ -275,7 +274,7 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
                 st.write("$M_{{total}} (White dwarf - secondary) = {} $".format(inv_mass_wd_sec))
                 st.write("$M_{{total}} = {} \pm {}~M_{{\odot}}$".format(total_mass_detailed, int(total_mass_detailed*0.20)))
                 
-                st.devider()
+                st.write('---')
                 
                 st.write("$Bin. Fraction = {}$".format(np.around(bin_fraction,decimals=2)))
 
