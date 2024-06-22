@@ -258,20 +258,20 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
                 
             with col11:
                 st.write("Integrated:")
-                st.write("$M_{{total}} (White dwarf) = {} $".format(inv_mass_wd))
+                st.write("$M_{{wd}} = {} $ (White dwarf)".format(int(inv_mass_wd)))
                 st.write("$M_{{total}} = {} \pm {}~M_{{\odot}}$".format(total_mass_integrated, int(total_mass_integrated*0.20)))
                 
                 st.write('---')
                 
                 
                 st.write("Deitaled:")
-                st.write("$M_{{total}} = {} $ (Single stars)".format(int(mass_sing + inv_mass_sing)))
-                st.write("$M_{{total}} = {} $ (Primary stars)".format(int(mass_prim + inv_mass_prim)))
-                st.write("$M_{{total}} = {} $ (Secondary stars) ".format(int(mass_sec + inv_mass_sec)))
+                st.write("$M_{{sing}} = {} $ (Single stars)".format(int(mass_sing + inv_mass_sing)))
+                st.write("$M_{{pri}} = {} $ (Primary stars)".format(int(mass_prim + inv_mass_prim)))
+                st.write("$M_{{sec}} = {} $ (Secondary stars) ".format(int(mass_sec + inv_mass_sec)))
                 
-                st.write("$M_{{total}} = {} $ (White dwarf - single)".format(int(inv_mass_wd_sing)))
-                st.write("$M_{{total}} = {} $ (White dwarf - primary)".format(int(inv_mass_wd_prim)))
-                st.write("$M_{{total}} = {} $ (White dwarf - secondary)".format(int(inv_mass_wd_sec)))
+                st.write("$M_{{wd-s}} = {} $ (White dwarf - single)".format(int(inv_mass_wd_sing)))
+                st.write("$M_{{wd-p}} = {} $ (White dwarf - primary)".format(int(inv_mass_wd_prim)))
+                st.write("$M_{{wd-s}} = {} $ (White dwarf - secondary)".format(int(inv_mass_wd_sec)))
                 st.write("$M_{{total}} = {} \pm {}~M_{{\odot}}$".format(total_mass_detailed, int(total_mass_detailed*0.20)))
                 
                 st.write('---')
