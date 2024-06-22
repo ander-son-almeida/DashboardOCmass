@@ -43,7 +43,40 @@ Subsequently, we investigated the relation between the masses and other fundamen
 Therefore, this Dashaboard was developed with the objective of disseminating the results obtained in our research, 
 in addition to providing a graphical interface for the researcher/user to select the clusters. 
     ''')
+
+container = st.container()
+col1, col2 = st.columns(2)
+with container:
+    with col1:
+        st.link_button("Go to Publication", "https://academic.oup.com/mnras/article/525/2/2315/7233111?guestAccessKey=dd38b380-3cfc-40e7-b29d-66c1c9a819f3&utm_source=authortollfreelink&utm_campaign=mnras&utm_medium=email")
+    with col2:
         
+        code = '''
+        
+        @ARTICLE{2023MNRAS.525.2315A,
+       author = {{Almeida}, Anderson and {Monteiro}, Hektor and {Dias}, Wilton S.},
+        title = "{Revisiting the mass of open clusters with Gaia data}",
+      journal = {\mnras},
+     keywords = {open clusters and associations: general, Astrophysics - Astrophysics of Galaxies, Astrophysics - Solar and Stellar Astrophysics},
+         year = 2023,
+        month = oct,
+       volume = {525},
+       number = {2},
+        pages = {2315-2340},
+          doi = {10.1093/mnras/stad2291},
+archivePrefix = {arXiv},
+       eprint = {2307.15182},
+ primaryClass = {astro-ph.GA},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2023MNRAS.525.2315A},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+        
+        
+        '''
+        
+        st.code(code, language="BibTex")
+
 st.subheader('The page is still being updated!')
 
 st.write('''

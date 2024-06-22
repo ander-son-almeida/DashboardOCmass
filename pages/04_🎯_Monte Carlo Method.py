@@ -165,6 +165,7 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
         # https://ui.adsabs.harvard.edu/abs/2018ApJ...866...21C/abstract    
         mass_pts = np.arange(mass_bin_ctr.max(), np.log10(7.5),np.diff(mass_bin_ctr)[0])
         Nstars = twosided_IMF(mass_pts, popt[0], popt[1], popt[2], popt[3]) 
+        
         # total mass in WDs
         inv_mass_wd = np.sum(IMFR(10**mass_pts) * 10**Nstars*(1+bin_fraction))
 
@@ -256,8 +257,26 @@ with parameters_and_upload.form(key = 'my_form', clear_on_submit = True):
                 st.plotly_chart(fig01, use_container_width=True)
                 
             with col11:
-                st.write("$M_{{total}} (Integrated) = {} \pm {}~M_{{\odot}}$".format(total_mass_integrated, int(total_mass_integrated*0.20)))
-                st.write("$M_{{total}} (Deitaled) = {} \pm {}~M_{{\odot}}$".format(total_mass_detailed, int(total_mass_detailed*0.20)))
+                st.write("Integrated:")
+                st.write("$M_{{total}} (White dwarf) = {} $".format(inv_mass_wd))
+                st.write("$M_{{total}} = {} \pm {}~M_{{\odot}}$".format(total_mass_integrated, int(total_mass_integrated*0.20)))
+                
+                st.devider()
+                
+
+                
+                st.write("Deitaled:")
+                st.write("$M_{{total}} (Single stars) = {} $".format((mass_sing + inv_mass_sing)))
+                st.write("$M_{{total}} (Primary stars) = {} $".format((mass_prim + inv_mass_prim)))
+                st.write("$M_{{total}} (Secondary stars) = {} $".format((mass_sec + inv_mass_sec)))
+                
+                st.write("$M_{{total}} (White dwarf - single) = {} $".format(inv_mass_wd_sing))
+                st.write("$M_{{total}} (White dwarf - primary) = {} $".format(inv_mass_wd_prim))
+                st.write("$M_{{total}} (White dwarf - secondary) = {} $".format(inv_mass_wd_sec))
+                st.write("$M_{{total}} = {} \pm {}~M_{{\odot}}$".format(total_mass_detailed, int(total_mass_detailed*0.20)))
+                
+                st.devider()
+                
                 st.write("$Bin. Fraction = {}$".format(np.around(bin_fraction,decimals=2)))
 
 # download files
