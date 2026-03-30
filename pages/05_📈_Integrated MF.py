@@ -251,8 +251,8 @@ col4  = st.columns(1)
 with container2:
     
     st.header("Mass function")
-    st.info(r'$\\alpha_{{A}}={}~\pm~{};~'
-            r'\\alpha_{{B}}={}~\pm~{};~'
+    st.info(r'$\alpha_{{A}}={}~\pm~{};~'
+            r'\alpha_{{B}}={}~\pm~{};~'
             r'M_{{C}}={}~\pm~{}$'.format(np.around(alpha_high_mass,decimals=2),
                                            np.around(alpha_high_mass_error,decimals=2),
                                            np.around(alpha_low_mass,decimals=2),
