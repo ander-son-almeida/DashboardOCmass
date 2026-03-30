@@ -316,8 +316,8 @@ with container2:
     st.header("Mass functions")
     with col4:
         st.subheader("Single")
-        st.info(r'$\\alpha_{{A}}={}~\pm~{};~'
-                r'\\alpha_{{B}}={}~\pm~{};~'
+        st.info(r'$\alpha_{{A}}={}~\pm~{};~'
+                r'\alpha_{{B}}={}~\pm~{};~'
                 r'M_{{C}}={}~\pm~{}$'.format(np.around(alpha_high_mass_sing,decimals=2),
                                                np.around(alpha_high_mass_error_sing,decimals=2),
                                                np.around(alpha_low_mass_sing,decimals=2),
@@ -329,8 +329,8 @@ with container2:
     
     with col5:
         st.subheader("Primary")
-        st.info(r'$\\alpha_{{A}}={}~\pm~{};~'
-                r'\\alpha_{{B}}={}~\pm~{};~'
+        st.info(r'$\alpha_{{A}}={}~\pm~{};~'
+                r'\alpha_{{B}}={}~\pm~{};~'
                 r'M_{{C}}={}~\pm~{}$'.format(np.around(alpha_high_mass_prim,decimals=2),
                                                np.around(alpha_high_mass_error_prim,decimals=2),
                                                np.around(alpha_low_mass_prim,decimals=2),
@@ -346,8 +346,8 @@ col6, col7 = st.columns(2)
 with container3:
     with col6:
         st.subheader("Secundary")
-        st.info(r'$\\alpha_{{A}}={}~\pm~{};~'
-                r'\\alpha_{{B}}={}~\pm~{};~'
+        st.info(r'$\alpha_{{A}}={}~\pm~{};~'
+                r'\alpha_{{B}}={}~\pm~{};~'
                 r'M_{{C}}={}~\pm~{}$'.format(np.around(alpha_high_mass_sec,decimals=2),
                                                np.around(alpha_high_mass_error_sec,decimals=2),
                                                np.around(alpha_low_mass_sec,decimals=2),
@@ -359,8 +359,8 @@ with container3:
 
     with col7:
         st.subheader("Binary")
-        st.info(r'$\\alpha_{{A}}={}~\pm~{};~'
-                r'\\alpha_{{B}}={}~\pm~{};~'
+        st.info(r'$\alpha_{{A}}={}~\pm~{};~'
+                r'\alpha_{{B}}={}~\pm~{};~'
                 r'M_{{C}}={}~\pm~{}$'.format(np.around(alpha_high_mass_bin,decimals=2),
                                                np.around(alpha_high_mass_error_bin,decimals=2),
                                                np.around(alpha_low_mass_bin,decimals=2),
