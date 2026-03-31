@@ -12,7 +12,7 @@ Provides usefull function to deal with GAIA data
 
 import numpy as np
 from scipy.interpolate import interp1d,LinearNDInterpolator,griddata
-from scipy.integrate import trapz,cumtrapz
+from scipy.integrate import trapezoid, cumulative_trapezoid
 # import matplotlib.pyplot as plt
 from astropy import units as u
 # import sys
@@ -162,10 +162,10 @@ def salpeter(alpha, nstars, Mmin, Mmax,seed=None):
     imf_val = mass_int**(-alpha)
     
     #normalize
-    imf_norm =  imf_val / (trapz(imf_val,mass_int))
+    imf_norm =  imf_val / (trapezoid(imf_val,mass_int))
 
     # get cumulative distribution
-    cum_imf = cumtrapz(imf_norm,mass_int, initial=0)
+    cum_imf = cumulative_trapezoid(imf_norm,mass_int, initial=0)
     
     np.random.seed(seed)
     
@@ -184,10 +184,10 @@ def deMarchi(alpha, beta, nstars, Mmin, Mmax,seed=None):
     imf_val = mass_int**(-alpha)*(1.-np.exp(-(mass_int/1.)**(-beta)))
     
     #normalize
-    imf_norm =  imf_val / (trapz(imf_val,mass_int))
+    imf_norm =  imf_val / (trapezoid(imf_val,mass_int))
 
     # get cumulative distribution
-    cum_imf = cumtrapz(imf_norm,mass_int, initial=0)
+    cum_imf = cumulative_trapezoid(imf_norm,mass_int, initial=0)
     
     np.random.seed(seed)
     
@@ -206,10 +206,10 @@ def MillerScalo(alpha,nstars, Mmin, Mmax,seed=None):
     imf_val[ind_low] = mass_int[ind_low]**(0.)
     
     #normalize
-    imf_norm =  imf_val / (trapz(imf_val,mass_int))
+    imf_norm =  imf_val / (trapezoid(imf_val,mass_int))
 
     # get cumulative distribution
-    cum_imf = cumtrapz(imf_norm,mass_int, initial=0)
+    cum_imf = cumulative_trapezoid(imf_norm,mass_int, initial=0)
     
     np.random.seed(seed)
     
@@ -253,10 +253,10 @@ def chabrier(alpha,nstars, Mmin, Mmax,seed=None):
            np.log10(0.08))**2/0.69**2)
     
     #normalize
-    imf_norm =  imf_val / (trapz(imf_val,mass_int))
+    imf_norm =  imf_val / (trapezoid(imf_val,mass_int))
 
     # get cumulative distribution
-    cum_imf = cumtrapz(imf_norm,mass_int, initial=0)
+    cum_imf = cumulative_trapezoid(imf_norm,mass_int, initial=0)
     
     r = np.random.RandomState(seed)
 
@@ -285,10 +285,10 @@ def chabrier_bin(nstars, Mmin, Mmax,seed=None):
            np.log10(0.22))**2/0.57**2)
     
     #normalize
-    imf_norm =  imf_val / (trapz(imf_val,mass_int))
+    imf_norm =  imf_val / (trapezoid(imf_val,mass_int))
 
     # get cumulative distribution
-    cum_imf = cumtrapz(imf_norm,mass_int, initial=0)
+    cum_imf = cumulative_trapezoid(imf_norm,mass_int, initial=0)
     
     np.random.seed(seed)
     
@@ -872,10 +872,10 @@ def sample_king(nstars, rcore, rtidal, Ncore, mass):
     king_val = king_prof(rad_int, rcore, rtidal, Ncore, 0.)*rad_int
     
     #normalize
-    king_norm =  king_val / trapz(king_val,rad_int)
+    king_norm =  king_val / trapezoid(king_val,rad_int)
     
     # get cumulative distribution
-    cum_king = cumtrapz(king_norm,rad_int, initial=0)
+    cum_king = cumulative_trapezoid(king_norm,rad_int, initial=0)
     
     # sample from King profile
     gen_radius = ( (interp1d(cum_king,rad_int))(np.flip(np.sort(np.random.rand(nstars)))) )

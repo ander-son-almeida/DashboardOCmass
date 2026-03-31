@@ -16,7 +16,7 @@ st.title('Methodology')
 
 url = 'https://discuss.streamlit.io/t/how-to-create-a-dynamic-clicable-hyperlink-or-button-in-streamlit/12959'
 
-st.write('''
+st.write(r'''
          
 In this study, we propose a new method to compute the masses of open clusters, here considered as the mass of member stars, which were determined through membership methods. The method is based on the determination of individual cluster member star masses using precise age, distance, metallicity, and extinction parameters obtained from \emph{Gaia} data. To estimate the individual member star masses, synthetic clusters are generated with full control of fundamental parameters. Finally, a Monte Carlo method is used to obtain the final individual masses, as well as their uncertainties, by comparing the observed and generated synthetic clusters. From the individual masses of the stars and an estimation of the unseen mass in low mass stars as well as remnants of evolved stars, the masses of the clusters are obtained. We validate the method by using a set of simulated observations based on synthetic clusters generated from predefined isochrones of given age, distance, extinction and metallicitiy as well as binary fraction.
 

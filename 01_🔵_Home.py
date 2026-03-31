@@ -54,7 +54,7 @@ code = '''
 @ARTICLE{2023MNRAS.525.2315A,
    author = {{Almeida}, Anderson and {Monteiro}, Hektor and {Dias}, Wilton S.},
 title = "{Revisiting the mass of open clusters with Gaia data}",
-  journal = {\mnras},
+  journal = {\\mnras},
  keywords = {open clusters and associations: general, Astrophysics - Astrophysics of Galaxies, Astrophysics - Solar and Stellar Astrophysics},
  year = 2023,
 month = oct,

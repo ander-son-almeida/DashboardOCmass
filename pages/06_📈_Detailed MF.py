@@ -124,14 +124,14 @@ st.sidebar.info('The .npy file download includes the individual and binary star 
 
 # bar with fundamental parameters
 st.sidebar.subheader("Fundamental parameters:")
-st.sidebar.subheader("$log(age) = {} \pm {}$".format(age[0], e_age[0]))
-st.sidebar.subheader("$Dist. = {} \pm {}~(kpc)$".format(dist[0],e_dist[0]))
-st.sidebar.subheader("$Av. = {} \pm {}~(mag)$".format(Av[0],e_Av[0]))
-st.sidebar.subheader("$FeH = {} \pm {}$".format(FeH[0],e_FeH[0]))
-st.sidebar.subheader("$M_{{total}} = {} \pm {}~M_{{\odot}}$".format(mass_total[0],mass_total_error[0]))
-st.sidebar.subheader("$Bin. Fraction = {}$".format(np.around(bin_frac[0],decimals=2)))
-st.sidebar.subheader("$Seg. Ratio = {}$".format(np.around(seg_ratio[0], decimals=2)))
-st.sidebar.subheader("$KS Test = {} \pm {}$".format(np.around(KSTest[0], decimals=3), np.around(KSTest_pval[0], decimals=3)))
+st.sidebar.subheader(r"$log(age) = {} \pm {}$".format(age[0], e_age[0]))
+st.sidebar.subheader(r"$Dist. = {} \pm {}~(kpc)$".format(dist[0],e_dist[0]))
+st.sidebar.subheader(r"$Av. = {} \pm {}~(mag)$".format(Av[0],e_Av[0]))
+st.sidebar.subheader(r"$FeH = {} \pm {}$".format(FeH[0],e_FeH[0]))
+st.sidebar.subheader(r"$M_{{total}} = {} \pm {}~M_{{\odot}}$".format(mass_total[0],mass_total_error[0]))
+st.sidebar.subheader(r"$Bin. Fraction = {}$".format(np.around(bin_frac[0],decimals=2)))
+st.sidebar.subheader(r"$Seg. Ratio = {}$".format(np.around(seg_ratio[0], decimals=2)))
+st.sidebar.subheader(r"$KS Test = {} \pm {}$".format(np.around(KSTest[0], decimals=3), np.around(KSTest_pval[0], decimals=3)))
 
 
 #Graphics
@@ -316,9 +316,9 @@ with container2:
     st.header("Mass functions")
     with col4:
         st.subheader("Single")
-        st.info('$\\alpha_{{A}}={}~\pm~{};~'
-                '\\alpha_{{B}}={}~\pm~{};~'
-                'M_{{C}}={}~\pm~{}$'.format(np.around(alpha_high_mass_sing,decimals=2), 
+        st.info(r'$\alpha_{{A}}={}~\pm~{};~'
+                r'\alpha_{{B}}={}~\pm~{};~'
+                r'M_{{C}}={}~\pm~{}$'.format(np.around(alpha_high_mass_sing,decimals=2),
                                                np.around(alpha_high_mass_error_sing,decimals=2),
                                                np.around(alpha_low_mass_sing,decimals=2),
                                                np.around(alpha_low_mass_error_sing,decimals=2),
@@ -329,9 +329,9 @@ with container2:
     
     with col5:
         st.subheader("Primary")
-        st.info('$\\alpha_{{A}}={}~\pm~{};~'
-                '\\alpha_{{B}}={}~\pm~{};~'
-                'M_{{C}}={}~\pm~{}$'.format(np.around(alpha_high_mass_prim,decimals=2), 
+        st.info(r'$\alpha_{{A}}={}~\pm~{};~'
+                r'\alpha_{{B}}={}~\pm~{};~'
+                r'M_{{C}}={}~\pm~{}$'.format(np.around(alpha_high_mass_prim,decimals=2),
                                                np.around(alpha_high_mass_error_prim,decimals=2),
                                                np.around(alpha_low_mass_prim,decimals=2),
                                                np.around(alpha_low_mass_error_prim,decimals=2),
@@ -346,9 +346,9 @@ col6, col7 = st.columns(2)
 with container3:
     with col6:
         st.subheader("Secundary")
-        st.info('$\\alpha_{{A}}={}~\pm~{};~'
-                '\\alpha_{{B}}={}~\pm~{};~'
-                'M_{{C}}={}~\pm~{}$'.format(np.around(alpha_high_mass_sec,decimals=2), 
+        st.info(r'$\alpha_{{A}}={}~\pm~{};~'
+                r'\alpha_{{B}}={}~\pm~{};~'
+                r'M_{{C}}={}~\pm~{}$'.format(np.around(alpha_high_mass_sec,decimals=2),
                                                np.around(alpha_high_mass_error_sec,decimals=2),
                                                np.around(alpha_low_mass_sec,decimals=2),
                                                np.around(alpha_low_mass_error_sec,decimals=2),
@@ -359,9 +359,9 @@ with container3:
 
     with col7:
         st.subheader("Binary")
-        st.info('$\\alpha_{{A}}={}~\pm~{};~'
-                '\\alpha_{{B}}={}~\pm~{};~'
-                'M_{{C}}={}~\pm~{}$'.format(np.around(alpha_high_mass_bin,decimals=2), 
+        st.info(r'$\alpha_{{A}}={}~\pm~{};~'
+                r'\alpha_{{B}}={}~\pm~{};~'
+                r'M_{{C}}={}~\pm~{}$'.format(np.around(alpha_high_mass_bin,decimals=2),
                                                np.around(alpha_high_mass_error_bin,decimals=2),
                                                np.around(alpha_low_mass_bin,decimals=2),
                                                np.around(alpha_low_mass_error_bin,decimals=2),
