@@ -226,7 +226,7 @@ plot_int = go.Figure(data = plot_ind1.data + plot_ind2.data)
 plot_int.update_layout(xaxis_title = 'log(M☉)',yaxis_title='ξ(log(M☉)')
 
 container1 = st.container()
-col1, col2, col3 = st.columns(3)
+col1, col2, col3 = st.columns(3, width="stretch")
 
 
 with container1:
@@ -246,7 +246,7 @@ with container1:
 
 
 container2 = st.container()
-col4  = st.columns(1)
+col4  = st.columns(1, width="stretch")
 
 with container2:
     
