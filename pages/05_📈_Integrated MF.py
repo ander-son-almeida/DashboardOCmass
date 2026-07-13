@@ -234,15 +234,15 @@ with container1:
     
     with col1:
         st.subheader("CMD")
-        st.plotly_chart(fig, width='stretch')
+        st.plotly_chart(fig, use_container_width=True)
 
     with col2:
         st.subheader("Distribution RA and DEC")
-        st.plotly_chart(fig_ra_dec, width='stretch')
+        st.plotly_chart(fig_ra_dec, use_container_width=True)
         
     with col3:
         st.subheader("Segregation ratio")
-        st.plotly_chart(seg, width='stretch')
+        st.plotly_chart(seg, use_container_width=True)
 
 
 container2 = st.container()
